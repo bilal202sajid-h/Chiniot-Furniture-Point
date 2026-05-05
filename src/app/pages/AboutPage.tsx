@@ -8,7 +8,7 @@ const TEAM = [
   {
     name: 'Élise Fontaine',
     role: 'Founder & Creative Director',
-    bio: 'Trained under Hans Wegner in Copenhagen before founding Maison in 2007. Her philosophy: a piece of furniture should improve with use.',
+    bio: 'Trained under Hans Wegner in Copenhagen before founding Chiniot Furniture Point in 2007. Her philosophy: a piece of furniture should improve with use.',
     imageUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80&fit=crop&crop=faces',
   },
   {
@@ -26,7 +26,7 @@ const TEAM = [
 ]
 
 const TIMELINE = [
-  { year: '2007', event: 'Maison founded in a 600m² workshop in Lyon, France.' },
+  { year: '2007', event: 'Chiniot Furniture Point founded in a 600m² workshop in Lyon, France.' },
   { year: '2010', event: 'First international stockist — Aesop, Tokyo.' },
   { year: '2014', event: 'Received the Design Council Sustainability Award.' },
   { year: '2018', event: 'Opened the London showroom on Chiltern Street.' },
@@ -42,7 +42,7 @@ export function AboutPage() {
         <div className="absolute inset-0">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=80&fit=crop"
-            alt="Maison workshop"
+            alt="Chiniot Furniture Point workshop"
             className="w-full h-full object-cover opacity-25"
           />
         </div>
@@ -57,7 +57,7 @@ export function AboutPage() {
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }}
             style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', lineHeight: '1.8', color: '#9B9085', maxWidth: '500px', marginTop: '1.5rem' }}>
-            Maison began with a single conviction: that the furniture in a home should be the most considered object in it — not the most conspicuous.
+            Chiniot Furniture Point began with a single conviction: that the furniture in a home should be the most considered object in it — not the most conspicuous.
           </motion.p>
         </div>
       </section>
@@ -73,7 +73,7 @@ export function AboutPage() {
               One Building.<br />Everything Made Inside.
             </h2>
             <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.92rem', lineHeight: '1.85', color: '#5A5450', marginBottom: '1.2rem' }}>
-              Every Maison piece begins and ends in our workshop in Lyon. We have never outsourced joinery, upholstery, or finishing to a third party. This isn't efficiency — it's control. The kind of control that lets us guarantee a piece for twenty years.
+              Every Chiniot Furniture Point piece begins and ends in our workshop in Lyon. We have never outsourced joinery, upholstery, or finishing to a third party. This isn't efficiency — it's control. The kind of control that lets us guarantee a piece for twenty years.
             </p>
             <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.92rem', lineHeight: '1.85', color: '#5A5450' }}>
               We run in batches of twelve. No piece enters the workshop until the previous batch has shipped and been quality-checked by the artisan who built it. This is slow. It is also the only way we know how to work.
@@ -82,7 +82,7 @@ export function AboutPage() {
           <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="overflow-hidden" style={{ aspectRatio: '4/3' }}>
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&fit=crop"
-              alt="Maison workshop interior"
+              alt="Chiniot Furniture Point workshop interior"
               className="w-full h-full object-cover"
             />
           </motion.div>
@@ -113,7 +113,7 @@ export function AboutPage() {
       <section className="py-24 px-8 md:px-16 bg-[#F7F4F0]">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mb-14">
           <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.68rem', letterSpacing: '0.28em', color: '#C4965A', textTransform: 'uppercase', display: 'block', marginBottom: '1rem' }}>The People</span>
-          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 500, color: '#1C1917' }}>Who Makes Maison</h2>
+          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 500, color: '#1C1917' }}>Who Makes Chiniot Furniture Point</h2>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {TEAM.map((member, i) => (

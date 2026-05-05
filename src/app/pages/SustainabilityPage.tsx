@@ -17,7 +17,7 @@ const PILLARS = [
   {
     icon: <Recycle size={24} color="#C4965A" />,
     title: 'Circular Promise',
-    text: 'We take back any Maison piece after 10 years and restore or repurpose it — keeping furniture out of landfill and extending the useful life of every piece.',
+    text: 'We take back any Chiniot Furniture Point piece after 10 years and restore or repurpose it — keeping furniture out of landfill and extending the useful life of every piece.',
   },
   {
     icon: <TreePine size={24} color="#C4965A" />,
@@ -27,12 +27,12 @@ const PILLARS = [
   {
     icon: <Truck size={24} color="#C4965A" />,
     title: 'Zero-Waste Packaging',
-    text: 'All Maison pieces ship in custom-formed pulp packaging — no single-use foam, no polystyrene. Packaging material is compostable at home.',
+    text: 'All Chiniot Furniture Point pieces ship in custom-formed pulp packaging — no single-use foam, no polystyrene. Packaging material is compostable at home.',
   },
   {
     icon: <RefreshCw size={24} color="#C4965A" />,
     title: 'Lifetime Repair Service',
-    text: "If a Maison piece needs repair — joint, upholstery, finish — we'll fix it for the cost of materials alone, regardless of when it was purchased.",
+    text: "If a Chiniot Furniture Point piece needs repair — joint, upholstery, finish — we'll fix it for the cost of materials alone, regardless of when it was purchased.",
   },
 ]
 
@@ -66,7 +66,7 @@ export function SustainabilityPage() {
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }}
             style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', lineHeight: '1.8', color: '#9B9085', maxWidth: '480px', marginTop: '1.5rem' }}>
-            Sustainability isn't a feature at Maison — it's the foundation. From forest to living room, every decision is made with the next century in mind.
+            Sustainability isn't a feature at Chiniot Furniture Point — it's the foundation. From forest to living room, every decision is made with the next century in mind.
           </motion.p>
         </div>
       </section>
@@ -111,7 +111,7 @@ export function SustainabilityPage() {
             "The most sustainable object is the one that never needs replacing. We design for heirlooms, not inventory turns."
           </p>
           <cite style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.18em', color: '#C4965A', textTransform: 'uppercase', fontStyle: 'normal' }}>
-            — Maison Design Manifesto, 2007
+            — Chiniot Furniture Point Design Manifesto, 2007
           </cite>
         </motion.blockquote>
       </section>

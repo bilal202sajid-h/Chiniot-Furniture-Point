@@ -42,7 +42,7 @@ function Navigation() {
     >
       <div className="flex items-center justify-between px-8 md:px-16 h-20">
         <Link to="/" style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.45rem', fontWeight: 600, color: '#1C1917', letterSpacing: '0.12em' }}>
-          MAISON
+          CHINIOT FURNITURE POINT
         </Link>
 
         <div className="hidden md:flex items-center gap-10">

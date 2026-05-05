@@ -17,7 +17,7 @@ export function Footer() {
         {/* Brand + WhatsApp CTA */}
         <div className="max-w-xs">
           <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.45rem', fontWeight: 600, color: '#F7F4F0', letterSpacing: '0.12em', marginBottom: '1rem' }}>
-            MAISON
+            CHINIOT FURNITURE POINT
           </div>
           <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.82rem', lineHeight: '1.75', color: '#6B6358', marginBottom: '1.5rem' }}>
             Premium furniture crafted with intention. Designed to age beautifully and live forever.
@@ -96,7 +96,7 @@ export function Footer() {
 
       <div className="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid #2D2926' }}>
         <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', color: '#4A4440', letterSpacing: '0.06em' }}>
-          © 2025 Maison. All rights reserved.
+          © 2025 Chiniot Furniture Point. All rights reserved.
         </p>
         <div className="flex gap-6">
           {['Privacy Policy', 'Terms of Service', 'Cookie Preferences'].map((item) => (

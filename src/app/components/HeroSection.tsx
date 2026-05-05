@@ -123,7 +123,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
             marginBottom: '1.5rem',
           }}
         >
-          New Collection — 2025
+         
         </motion.span>
 
         <motion.h1
