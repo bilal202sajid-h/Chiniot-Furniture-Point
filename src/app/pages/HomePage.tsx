@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation, Link } from 'react-router'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { HeroSection } from '../components/HeroSection'
 import { ProductCard } from '../components/ProductCard'
@@ -34,16 +34,10 @@ export function HomePage() {
 
       {/* Featured Products */}
       <section id="collections" className="py-20 md:py-32 px-6 md:px-16 bg-white">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="mb-14"
-        >
-          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.68rem', letterSpacing: '0.28em', color: '#C4965A', textTransform: 'uppercase', display: 'block', marginBottom: '1rem' }}>
+        <div className="mb-14">
+          <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.68rem', letterSpacing: '0.28em', color: '#C4965A', textTransform: 'uppercase', display: 'block', marginBottom: '1rem' }}>
             New Arrivals
-          </span>
+          </h3>
           <div className="flex items-end justify-between gap-4 flex-wrap">
             <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', fontWeight: 500, color: '#1C1917', lineHeight: 1.15 }}>
               Featured Pieces
@@ -53,7 +47,7 @@ export function HomePage() {
               View All <ArrowRight size={14} />
             </Link>
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {featured.map((product, i) => (

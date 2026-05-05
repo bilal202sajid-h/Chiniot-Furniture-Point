@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { ChevronLeft } from 'lucide-react'
 import { ProductCard } from '../components/ProductCard'
 import { ImageWithFallback } from '../components/figma/ImageWithFallback'
@@ -65,7 +65,7 @@ export function ProductDetailPage() {
           {/* Image */}
           <motion.div initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}
             className="relative overflow-hidden bg-[#EDE9E3]" style={{ aspectRatio: '4/5' }}>
-            <ImageWithFallback src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
+            <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
             {product.badge && (
               <div className="absolute top-5 left-5" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', backgroundColor: '#C4965A', color: '#fff', padding: '0.3rem 0.75rem' }}>
                 {product.badge}

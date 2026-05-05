@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { ImageWithFallback } from '../components/figma/ImageWithFallback'
 import { Footer } from '../components/Footer'
 import { Link } from 'react-router'

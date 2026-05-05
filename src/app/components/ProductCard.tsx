@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { Heart } from 'lucide-react'
 import { ImageWithFallback } from './figma/ImageWithFallback'
 
@@ -51,7 +51,8 @@ export function ProductCard({ product }: ProductCardProps) {
     <div ref={cardRef} style={{ perspective: '1100px' }}>
       <motion.div
         animate={{ rotateX: tilt.x, rotateY: tilt.y }}
-        transition={{ type: 'spring', stiffness: 380, damping: 22, mass: 0.5 }}
+        whileHover={{ y: -10, scale: 1.02 }}
+        transition={{ type: 'spring', stiffness: 220, damping: 28, mass: 0.6, ease: [0.33, 1, 0.68, 1] }}
         style={{ transformStyle: 'preserve-3d' }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setHovered(true)}
@@ -85,7 +86,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 12 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.25, ease: [0.33, 1, 0.68, 1] }}
             className="absolute bottom-0 left-0 right-0 p-4"
           >
             <a
@@ -93,7 +94,7 @@ export function ProductCard({ product }: ProductCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="w-full flex items-center justify-center gap-2 text-white transition-colors py-3"
+              className="w-full flex items-center justify-center gap-2 text-white transition-colors py-3 mobile-w-full"
               style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', backgroundColor: '#25D366' }}
             >
               <WhatsAppIcon />

@@ -3,6 +3,10 @@
   --header-height: 4rem; /* 64px mobile */
 }
 
+:root {
+  --premium-ease: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
 @media (min-width: 768px) {
   :root { --header-height: 5rem; } /* 80px desktop */
 }
