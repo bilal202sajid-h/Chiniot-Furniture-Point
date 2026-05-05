@@ -15,7 +15,7 @@ export function CollectionsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-40 pb-20 px-8 md:px-16 bg-[#F7F4F0]">
+      <section className="pt-16 md:pt-40 pb-12 md:pb-20 px-6 md:px-16 bg-[#F7F4F0]">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.68rem', letterSpacing: '0.28em', color: '#C4965A', textTransform: 'uppercase', display: 'block', marginBottom: '1rem' }}>
             The Collection
@@ -30,7 +30,7 @@ export function CollectionsPage() {
       </section>
 
       {/* Curated Rooms */}
-      <section className="px-8 md:px-16 pb-24 bg-[#F7F4F0]">
+      <section className="px-6 md:px-16 pb-24 bg-[#F7F4F0]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {COLLECTIONS.map((col, i) => (
             <motion.div key={col.id} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.12 }}
@@ -54,7 +54,7 @@ export function CollectionsPage() {
       </section>
 
       {/* Products */}
-      <section className="py-24 px-8 md:px-16 bg-white">
+      <section className="py-24 px-6 md:px-16 bg-white">
         <div className="flex items-center justify-between mb-12 flex-wrap gap-6">
           <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', fontWeight: 500, color: '#1C1917' }}>
             All Pieces

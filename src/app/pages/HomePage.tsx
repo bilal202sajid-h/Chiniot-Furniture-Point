@@ -33,7 +33,7 @@ export function HomePage() {
       />
 
       {/* Featured Products */}
-      <section id="collections" className="py-24 md:py-32 px-8 md:px-16 bg-white">
+      <section id="collections" className="py-20 md:py-32 px-6 md:px-16 bg-white">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export function HomePage() {
       </section>
 
       {/* Collections Banner */}
-      <section className="py-24 md:py-32 px-8 md:px-16 bg-[#F7F4F0]">
+      <section className="py-20 md:py-32 px-6 md:px-16 bg-[#F7F4F0]">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

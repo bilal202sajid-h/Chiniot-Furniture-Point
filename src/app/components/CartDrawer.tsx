@@ -45,7 +45,7 @@ export function CartDrawer({ isOpen, onClose, items, onUpdateQuantity, onRemove 
           >
             {/* Header */}
             <div
-              className="flex items-center justify-between px-8 py-6"
+              className="flex items-center justify-between px-6 py-6"
               style={{ borderBottom: '1px solid #EDE8E1' }}
             >
               <div>
@@ -81,7 +81,7 @@ export function CartDrawer({ isOpen, onClose, items, onUpdateQuantity, onRemove 
             </div>
 
             {/* Items */}
-            <div className="flex-1 overflow-y-auto px-8 py-6">
+            <div className="flex-1 overflow-y-auto px-6 py-6">
               {items.length === 0 ? (
                 <div
                   className="flex flex-col items-center justify-center h-full text-center"
@@ -223,7 +223,7 @@ export function CartDrawer({ isOpen, onClose, items, onUpdateQuantity, onRemove 
 
             {/* Footer */}
             {items.length > 0 && (
-              <div className="px-8 py-6" style={{ borderTop: '1px solid #EDE8E1' }}>
+              <div className="px-6 py-6" style={{ borderTop: '1px solid #EDE8E1' }}>
                 {/* Complimentary note */}
                 <div
                   className="flex items-center gap-2 mb-5 px-4 py-3 bg-[#F7F4F0]"

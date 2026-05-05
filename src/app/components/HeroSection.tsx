@@ -89,7 +89,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
   }, [])
 
   return (
-    <section className="relative h-screen overflow-hidden bg-[#F7F4F0]">
+    <section className="relative min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-5rem)] overflow-hidden bg-[#F7F4F0]">
       {/* Vanilla Three.js canvas — no R3F, no event-connection issues */}
       <div className="absolute inset-0 pointer-events-none">
         <canvas
@@ -108,7 +108,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
       />
 
       {/* Text content */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-28 max-w-2xl">
+      <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-28 max-w-xl md:max-w-2xl">
         <motion.span
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -200,7 +200,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.1 }}
-          className="flex gap-10 mt-14 pt-10"
+          className="flex flex-col sm:flex-row gap-8 mt-14 pt-10"
           style={{ borderTop: '1px solid #E2DDD6' }}
         >
           {[
@@ -242,7 +242,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.6 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
       >
         <div
           style={{

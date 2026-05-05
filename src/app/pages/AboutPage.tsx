@@ -38,7 +38,7 @@ export function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ minHeight: '80vh', backgroundColor: '#1C1917' }}>
+      <section className="relative overflow-hidden" style={{ minHeight: 'calc(80vh - var(--header-height))', backgroundColor: '#1C1917' }}>
         <div className="absolute inset-0">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=80&fit=crop"
@@ -46,7 +46,7 @@ export function AboutPage() {
             className="w-full h-full object-cover opacity-25"
           />
         </div>
-        <div className="relative z-10 flex flex-col justify-center px-8 md:px-16 pt-40 pb-24">
+        <div className="relative z-10 flex flex-col justify-center px-6 md:px-16 pt-16 md:pt-40 pb-12 md:pb-24">
           <motion.span initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
             style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.68rem', letterSpacing: '0.28em', color: '#C4965A', textTransform: 'uppercase', display: 'block', marginBottom: '1.2rem' }}>
             Est. Lyon, 2007
@@ -63,7 +63,7 @@ export function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="py-24 md:py-32 px-8 md:px-16 bg-[#F7F4F0]">
+      <section className="py-24 md:py-32 px-6 md:px-16 bg-[#F7F4F0]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl">
           <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
             <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.65rem', letterSpacing: '0.22em', color: '#C4965A', textTransform: 'uppercase', display: 'block', marginBottom: '1.2rem' }}>
@@ -90,7 +90,7 @@ export function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section style={{ backgroundColor: '#241F1B' }} className="py-24 px-8 md:px-16">
+      <section style={{ backgroundColor: '#241F1B' }} className="py-24 px-6 md:px-16">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
           style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 500, color: '#F7F4F0', marginBottom: '3rem' }}>
           A Brief History
@@ -110,7 +110,7 @@ export function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-24 px-8 md:px-16 bg-[#F7F4F0]">
+      <section className="py-24 px-6 md:px-16 bg-[#F7F4F0]">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mb-14">
           <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.68rem', letterSpacing: '0.28em', color: '#C4965A', textTransform: 'uppercase', display: 'block', marginBottom: '1rem' }}>The People</span>
           <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 500, color: '#1C1917' }}>Who Makes Chiniot Furniture Point</h2>
@@ -130,7 +130,7 @@ export function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-8 md:px-16 bg-white text-center">
+      <section className="py-20 px-6 md:px-16 bg-white text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 500, color: '#1C1917', marginBottom: '1.5rem' }}>
             Ready to find your piece?

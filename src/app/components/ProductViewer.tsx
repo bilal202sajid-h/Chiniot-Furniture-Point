@@ -152,8 +152,8 @@ export function ProductViewer() {
   const variant = COLOR_VARIANTS[selectedVariant]
 
   return (
-    <section id="viewer" className="min-h-screen flex flex-col lg:flex-row"
-      style={{ backgroundColor: '#1C1917' }}>
+    <section id="viewer" className="flex flex-col lg:flex-row"
+      style={{ backgroundColor: '#1C1917', minHeight: 'calc(100vh - var(--header-height))' }}>
 
       {/* ── Info panel ──────────────────────────────────────────────────── */}
       <motion.div
@@ -161,7 +161,7 @@ export function ProductViewer() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="flex flex-col justify-center px-8 md:px-16 py-16 lg:py-24 lg:w-[42%]"
+        className="flex flex-col justify-center px-6 md:px-16 py-12 lg:py-24 lg:w-[42%]"
       >
         <span style={{
           fontFamily: 'Inter, sans-serif', fontSize: '0.65rem',
@@ -250,7 +250,7 @@ export function ProductViewer() {
             }}>$2,840</div>
           </div>
           <button onClick={handleAddToCart}
-            className="flex items-center gap-2 bg-[#C4965A] text-white hover:bg-[#B8855A] transition-colors px-8 py-4 flex-1 justify-center"
+            className="flex items-center gap-2 bg-[#C4965A] text-white hover:bg-[#B8855A] transition-colors px-6 md:px-8 py-4 flex-1 justify-center"
             style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.78rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
             {added ? <><Check size={14} /> Added to Cart</> : 'Add to Cart'}
           </button>

@@ -38,7 +38,7 @@ export function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F7F4F0]" style={{ paddingTop: '80px' }}>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F7F4F0]" style={{ paddingTop: 'calc(var(--header-height) + 0.5rem)' }}>
         <p style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', color: '#1C1917' }}>Product not found.</p>
         <Link to="/collections" className="mt-6" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.78rem', letterSpacing: '0.1em', color: '#C4965A', textTransform: 'uppercase' }}>
           ← Back to Collections
@@ -52,7 +52,7 @@ export function ProductDetailPage() {
   return (
     <>
       {/* Breadcrumb */}
-      <div className="pt-28 pb-6 px-8 md:px-16 bg-[#F7F4F0]">
+      <div className="pt-16 md:pt-28 pb-6 px-6 md:px-16 bg-[#F7F4F0]">
         <Link to="/collections" className="inline-flex items-center gap-1.5 hover:opacity-70 transition-opacity"
           style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', letterSpacing: '0.1em', color: '#9B9085', textTransform: 'uppercase' }}>
           <ChevronLeft size={13} /> Collections
@@ -60,7 +60,7 @@ export function ProductDetailPage() {
       </div>
 
       {/* Main product section */}
-      <section className="px-8 md:px-16 pb-24 bg-[#F7F4F0]">
+      <section className="px-6 md:px-16 pb-12 md:pb-24 bg-[#F7F4F0]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-w-6xl">
           {/* Image */}
           <motion.div initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}
@@ -126,7 +126,7 @@ export function ProductDetailPage() {
       </section>
 
       {/* Related products */}
-      <section className="py-24 px-8 md:px-16 bg-white">
+      <section className="py-20 md:py-24 px-6 md:px-16 bg-white">
         <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 500, color: '#1C1917', marginBottom: '2.5rem' }}>
           You May Also Like
         </h2>

@@ -25,7 +25,7 @@ function Navigation() {
 
   const linkStyle = {
     fontFamily: 'Inter, sans-serif',
-    fontSize: '0.78rem',
+    fontSize: 'clamp(0.68rem, 1.6vw, 0.78rem)',
     letterSpacing: '0.1em',
     textTransform: 'uppercase' as const,
     color: '#6B6358',
@@ -40,8 +40,8 @@ function Navigation() {
         borderBottom: scrolled ? '1px solid rgba(196,192,186,0.4)' : '1px solid transparent',
       }}
     >
-      <div className="flex items-center justify-between px-8 md:px-16 h-20">
-        <Link to="/" style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.45rem', fontWeight: 600, color: '#1C1917', letterSpacing: '0.12em' }}>
+      <div className="flex items-center justify-between px-6 md:px-16 h-16 md:h-20">
+        <Link to="/" style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1rem, 2.2vw, 1.45rem)', fontWeight: 600, color: '#1C1917', letterSpacing: '0.12em' }}>
           CHINIOT FURNITURE POINT
         </Link>
 
@@ -67,9 +67,9 @@ function Navigation() {
         {mobileOpen && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}
             className="overflow-hidden md:hidden bg-[#F7F4F0] border-t border-[#EDE8E1]">
-            <div className="flex flex-col px-8 py-6 gap-6">
+            <div className="flex flex-col px-6 py-6 gap-6">
               {navLinks.map((link) => (
-                <Link key={link.label} to={link.to} style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.2rem', color: '#1C1917', fontWeight: 400 }}>
+                <Link key={link.label} to={link.to} style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1rem, 3.5vw, 1.2rem)', color: '#1C1917', fontWeight: 400 }}>
                   {link.label}
                 </Link>
               ))}
@@ -84,7 +84,7 @@ function Navigation() {
 // ── Root Layout ───────────────────────────────────────────────────────────────
 export function Root() {
   return (
-    <div className="min-h-screen" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="min-h-screen pt-16 md:pt-20" style={{ fontFamily: 'Inter, sans-serif' }}>
       <Navigation />
       <Outlet />
     </div>

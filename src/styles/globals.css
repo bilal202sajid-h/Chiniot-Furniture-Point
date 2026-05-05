@@ -1,0 +1,39 @@
+/* Global resets and responsive tweaks */
+:root {
+  --header-height: 4rem; /* 64px mobile */
+}
+
+@media (min-width: 768px) {
+  :root { --header-height: 5rem; } /* 80px desktop */
+}
+
+html { box-sizing: border-box; font-size: clamp(14px, 1.4vw, 16px); }
+*, *:before, *:after { box-sizing: inherit; }
+
+body { margin: 0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+img, picture, video, canvas { max-width: 100%; height: auto; display: block; }
+
+/* Ensure content isn't visually cramped on very small screens when components use px-8 / px-6 */
+@media (max-width: 420px) {
+  .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .px-6 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+  .pt-40 { padding-top: 2.5rem !important; }
+}
+
+/* Slightly reduce large gap/mt values on small screens */
+@media (max-width: 480px) {
+  .mt-14 { margin-top: 1.25rem !important; }
+  .gap-10 { gap: 1rem !important; }
+}
+
+/* Utility: center absolute elements that use left-1/2 -translate-x-1/2 but keep responsive offsets */
+.centered-horizontal { left: 50%; transform: translateX(-50%); }
+
+/* Make nav fixed height available as a CSS variable for components that need it */
+.site-header-space { height: var(--header-height); }
+
+/* Accessibility: reduce motion for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}

@@ -55,7 +55,7 @@ export function SustainabilityPage() {
             className="w-full h-full object-cover opacity-30"
           />
         </div>
-        <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16 pb-20 pt-32">
+        <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-16 pb-12 md:pb-20 pt-16 md:pt-32">
           <motion.span initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
             style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.68rem', letterSpacing: '0.28em', color: '#C4965A', textTransform: 'uppercase', display: 'block', marginBottom: '1.2rem' }}>
             Our Commitment
@@ -72,7 +72,7 @@ export function SustainabilityPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-16 px-8 md:px-16 bg-[#F7F4F0]">
+      <section className="py-16 px-6 md:px-16 bg-[#F7F4F0]">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {STATS.map((s, i) => (
             <motion.div key={s.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }} className="text-center">
@@ -84,7 +84,7 @@ export function SustainabilityPage() {
       </section>
 
       {/* Pillars */}
-      <section style={{ backgroundColor: '#241F1B' }} className="py-24 md:py-36 px-8 md:px-16">
+      <section style={{ backgroundColor: '#241F1B' }} className="py-24 md:py-36 px-6 md:px-16">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="text-center mb-16">
             <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', fontWeight: 500, color: '#F7F4F0', lineHeight: 1.15 }}>
@@ -104,7 +104,7 @@ export function SustainabilityPage() {
       </section>
 
       {/* Manifesto quote */}
-      <section className="py-24 md:py-32 px-8 md:px-16 bg-[#F7F4F0]">
+      <section className="py-24 md:py-32 px-6 md:px-16 bg-[#F7F4F0]">
         <motion.blockquote initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
           className="max-w-3xl mx-auto text-center">
           <p style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', fontWeight: 400, color: '#1C1917', lineHeight: 1.5, fontStyle: 'italic', marginBottom: '2rem' }}>

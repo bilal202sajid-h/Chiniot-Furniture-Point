@@ -12,7 +12,7 @@ function WhatsAppIcon() {
 
 export function Footer() {
   return (
-    <footer className="bg-[#1C1917] px-8 md:px-16 py-16">
+    <footer className="bg-[#1C1917] px-6 md:px-16 py-12">
       <div className="flex flex-col md:flex-row justify-between gap-12">
         {/* Brand + WhatsApp CTA */}
         <div className="max-w-xs">
