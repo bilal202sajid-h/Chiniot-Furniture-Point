@@ -168,7 +168,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
         >
           <button
             onClick={onExploreClick}
-            className="flex items-center gap-2 bg-[#1C1917] text-white hover:bg-[#3D3530] transition-colors duration-300"
+            className="flex items-center gap-2 bg-[#1C1917] text-white hover:bg-[#3D3530] transition-colors duration-300 mobile-w-full justify-center"
             style={{
               fontFamily: 'Inter, sans-serif',
               fontSize: '0.78rem',
@@ -182,7 +182,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           </button>
           <button
             onClick={onViewIn3DClick}
-            className="flex items-center gap-2 border text-[#1C1917] hover:bg-[#1C1917] hover:text-white transition-colors duration-300"
+            className="flex items-center gap-2 border text-[#1C1917] hover:bg-[#1C1917] hover:text-white transition-colors duration-300 mobile-w-full justify-center"
             style={{
               fontFamily: 'Inter, sans-serif',
               fontSize: '0.78rem',

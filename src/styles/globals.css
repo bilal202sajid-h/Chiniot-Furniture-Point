@@ -37,3 +37,19 @@ img, picture, video, canvas { max-width: 100%; height: auto; display: block; }
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
+
+/* Mobile-friendly touch targets and CTA utilities */
+@media (max-width: 640px) {
+  button, a[class*="inline-flex"], a[class*="flex"] {
+    min-height: 44px;
+  }
+
+  /* Utility to force buttons/links to full width on small screens */
+  .mobile-w-full {
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* Reduce oversized gaps on very small screens */
+  .gap-12 { gap: 0.75rem !important; }
+}

@@ -67,9 +67,10 @@ function Navigation() {
         {mobileOpen && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}
             className="overflow-hidden md:hidden bg-[#F7F4F0] border-t border-[#EDE8E1]">
-            <div className="flex flex-col px-6 py-6 gap-6">
+            <div className="flex flex-col px-6 py-6 gap-4">
               {navLinks.map((link) => (
-                <Link key={link.label} to={link.to} style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1rem, 3.5vw, 1.2rem)', color: '#1C1917', fontWeight: 400 }}>
+                <Link key={link.label} to={link.to} style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1rem, 3.5vw, 1.2rem)', color: '#1C1917', fontWeight: 400 }}
+                  className="py-3">
                   {link.label}
                 </Link>
               ))}
