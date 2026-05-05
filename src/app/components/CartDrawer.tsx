@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { X, Minus, Plus, Trash2, ArrowRight } from 'lucide-react'
 import { Product } from './ProductCard'
 

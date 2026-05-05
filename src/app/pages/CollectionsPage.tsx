@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { ProductCard } from '../components/ProductCard'
 import { ImageWithFallback } from '../components/figma/ImageWithFallback'
 import { PRODUCTS, COLLECTIONS } from '../data/products'
@@ -35,7 +35,7 @@ export function CollectionsPage() {
           {COLLECTIONS.map((col, i) => (
             <motion.div key={col.id} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.12 }}
               className="group relative overflow-hidden cursor-pointer" style={{ aspectRatio: '3/4' }}>
-              <img src={col.imageUrl} alt={col.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <ImageWithFallback src={col.imageUrl} alt={col.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(28,25,23,0.75) 0%, transparent 55%)' }} />
               <div className="absolute bottom-0 left-0 right-0 p-7">
                 <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.65rem', letterSpacing: '0.18em', color: 'rgba(247,244,240,0.7)', textTransform: 'uppercase', marginBottom: '0.4rem' }}>

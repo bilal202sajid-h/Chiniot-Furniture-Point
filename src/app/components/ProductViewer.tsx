@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Eye, EyeOff, Smartphone, Check } from 'lucide-react'
 import * as THREE from 'three'
 import { createChair, addStudioLights, applyExplodedProgress, ChairParts } from './chairGeometry'
@@ -160,7 +160,7 @@ export function ProductViewer() {
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+        transition={{ duration: 0.8 }}
         className="flex flex-col justify-center px-6 md:px-16 py-12 lg:py-24 lg:w-[42%]"
       >
         <span style={{

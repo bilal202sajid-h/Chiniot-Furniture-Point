@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Leaf, Award, Recycle, TreePine, Truck, RefreshCw } from 'lucide-react'
 import { ImageWithFallback } from '../components/figma/ImageWithFallback'
 import { Footer } from '../components/Footer'

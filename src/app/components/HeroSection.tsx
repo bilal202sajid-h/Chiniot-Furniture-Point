@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import ScrollSection, { SectionHeading, SectionText, RevealImage, premiumEase } from './ScrollSection'
+import { motion } from 'motion/react'
 import { ChevronRight } from 'lucide-react'
 import * as THREE from 'three'
 import { createChair, addStudioLights } from './chairGeometry'
@@ -110,24 +109,61 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
 
       {/* Text content */}
       <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-28 max-w-xl md:max-w-2xl">
-        <SectionHeading className="text-sm uppercase" style={{ fontFamily: 'Inter, sans-serif', color: '#C4965A', letterSpacing: '0.28em', marginBottom: '1.5rem' }}>
-          {/* small label */}
-        </SectionHeading>
+        <motion.span
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          style={{
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.68rem',
+            letterSpacing: '0.28em',
+            color: '#C4965A',
+            textTransform: 'uppercase',
+            display: 'block',
+            marginBottom: '1.5rem',
+          }}
+        >
+         
+        </motion.span>
 
-        <SectionHeading as="h1" className="text-5xl" style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(3rem, 5.5vw, 5.2rem)', lineHeight: '1.08', fontWeight: 500, color: '#1C1917', marginBottom: '1.8rem' }}>
+        <motion.h1
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          style={{
+            fontFamily: '"Playfair Display", serif',
+            fontSize: 'clamp(3rem, 5.5vw, 5.2rem)',
+            lineHeight: '1.08',
+            fontWeight: 500,
+            color: '#1C1917',
+            marginBottom: '1.8rem',
+          }}
+        >
           Design That<br />
           <em>Defines</em> Space
-        </SectionHeading>
+        </motion.h1>
 
-        <SectionText style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', lineHeight: '1.8', color: '#7A7269', maxWidth: '420px', marginBottom: '2.5rem' }}>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          style={{
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '1rem',
+            lineHeight: '1.8',
+            color: '#7A7269',
+            maxWidth: '420px',
+            marginBottom: '2.5rem',
+          }}
+        >
           Handcrafted furniture for the modern interior. Each piece is an
           architectural statement born from material excellence and timeless proportion.
-        </SectionText>
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8, ease: premiumEase }}
+          transition={{ duration: 0.7, delay: 0.8 }}
           className="flex flex-wrap gap-4"
         >
           <button
@@ -163,7 +199,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.1, ease: premiumEase }}
+          transition={{ duration: 0.8, delay: 1.1 }}
           className="flex flex-col sm:flex-row gap-8 mt-14 pt-10"
           style={{ borderTop: '1px solid #E2DDD6' }}
         >
