@@ -203,7 +203,7 @@ export function CartDrawer({ isOpen, onClose, items, onUpdateQuantity, onRemove 
                                 color: '#1C1917',
                               }}
                             >
-                              ${(item.product.price * item.quantity).toLocaleString()}
+                              PKR {(item.product.price * item.quantity).toLocaleString()}
                             </span>
                             <button
                               onClick={() => onRemove(item.product.id)}
@@ -235,7 +235,7 @@ export function CartDrawer({ isOpen, onClose, items, onUpdateQuantity, onRemove 
                   }}
                 >
                   <span style={{ color: '#C4965A' }}>✦</span>
-                  Complimentary white-glove delivery on orders over $2,000
+                  Complimentary delivery across Pakistan on orders over PKR 200,000
                 </div>
 
                 {/* Subtotal */}
@@ -259,7 +259,7 @@ export function CartDrawer({ isOpen, onClose, items, onUpdateQuantity, onRemove 
                       color: '#1C1917',
                     }}
                   >
-                    ${subtotal.toLocaleString()}
+                    PKR {subtotal.toLocaleString()}
                   </span>
                 </div>
 

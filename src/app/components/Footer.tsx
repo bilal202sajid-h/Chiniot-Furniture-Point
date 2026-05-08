@@ -20,7 +20,8 @@ export function Footer() {
             CHINIOT FURNITURE POINT
           </div>
           <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.82rem', lineHeight: '1.75', color: '#6B6358', marginBottom: '1.5rem' }}>
-            Premium furniture crafted with intention. Designed to age beautifully and live forever.
+            Wooden furniture for Pakistani homes, including beds, sofas, tables, chairs,
+            wardrobes, and storage pieces made for everyday family use.
           </p>
           <a
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hi, I\'d like to enquire about your furniture collection.')}`}
@@ -41,16 +42,22 @@ export function Footer() {
               title: 'Shop',
               links: [
                 { label: 'New Arrivals', to: '/collections' },
-                { label: 'Seating', to: '/collections' },
+                { label: 'Beds', to: '/collections' },
+                { label: 'Sofas', to: '/collections' },
                 { label: 'Tables', to: '/collections' },
-                { label: 'Lighting', to: '/collections' },
+                { label: 'Chairs', to: '/collections' },
+                { label: 'Wardrobes', to: '/collections' },
                 { label: 'All Pieces', to: '/collections' },
               ],
             },
             {
               title: 'Enquire',
               links: [
+                { label: 'Contact Page', to: '/contact' },
                 { label: 'WhatsApp', href: `https://wa.me/${WHATSAPP_NUMBER}` },
+                { label: 'Instagram', href: 'https://www.instagram.com/chiniotfurniturepoint01?igsh=MTFncGxucHVhNzBjdA%3D%3D&utm_source=qr' },
+                { label: 'Facebook', href: 'https://www.facebook.com/share/15pzVzH2VBa/?mibextid=wwXIfr' },
+                { label: 'TikTok', href: 'https://www.tiktok.com/@chiniot.furniture17?_r=1&_t=ZS-966vJBxZ52A' },
                 { label: 'Trade Programme', to: '/about' },
                 { label: 'Interior Consultancy', to: '/about' },
                 { label: 'Showrooms', to: '/about' },
@@ -61,6 +68,7 @@ export function Footer() {
               links: [
                 { label: 'About Us', to: '/about' },
                 { label: 'Sustainability', to: '/sustainability' },
+                { label: 'Contact', to: '/contact' },
                 { label: 'Careers', to: '/about' },
                 { label: 'Press', to: '/about' },
               ],

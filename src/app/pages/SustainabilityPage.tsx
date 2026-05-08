@@ -7,17 +7,17 @@ const PILLARS = [
   {
     icon: <Leaf size={24} color="#C4965A" />,
     title: 'Responsibly Sourced',
-    text: 'All timber is FSC-certified and sourced from managed forests. Zero old-growth wood, ever. Our suppliers are audited in person every two years.',
+    text: 'We use responsibly sourced sheesham and related hardwoods selected for strength, stability, and long-term daily use in Pakistani homes.',
   },
   {
     icon: <Award size={24} color="#C4965A" />,
     title: 'Master Craftsmanship',
-    text: 'Every joint is hand-fitted by artisans with decades of experience. Built to last generations, not seasons. Repairability is designed in from the start.',
+    text: 'Every bed, sofa frame, table, chair, and wardrobe is hand-fitted by artisans with 10 years of experience in wooden household furniture.',
   },
   {
     icon: <Recycle size={24} color="#C4965A" />,
     title: 'Circular Promise',
-    text: 'We take back any Chiniot Furniture Point piece after 10 years and restore or repurpose it — keeping furniture out of landfill and extending the useful life of every piece.',
+    text: 'After years of use, we help restore and refinish major wooden furniture items so families can continue using them instead of replacing them early.',
   },
   {
     icon: <TreePine size={24} color="#C4965A" />,
@@ -66,7 +66,8 @@ export function SustainabilityPage() {
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }}
             style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', lineHeight: '1.8', color: '#9B9085', maxWidth: '480px', marginTop: '1.5rem' }}>
-            Sustainability isn't a feature at Chiniot Furniture Point — it's the foundation. From forest to living room, every decision is made with the next century in mind.
+            Sustainability at Chiniot Furniture Point means making wooden beds, sofas,
+            tables, chairs, wardrobes, and storage pieces that stay strong for years in daily use.
           </motion.p>
         </div>
       </section>
@@ -108,10 +109,10 @@ export function SustainabilityPage() {
         <motion.blockquote initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
           className="max-w-3xl mx-auto text-center">
           <p style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', fontWeight: 400, color: '#1C1917', lineHeight: 1.5, fontStyle: 'italic', marginBottom: '2rem' }}>
-            "The most sustainable object is the one that never needs replacing. We design for heirlooms, not inventory turns."
+            "The most sustainable furniture is what a household can use every day for years without compromise."
           </p>
           <cite style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.18em', color: '#C4965A', textTransform: 'uppercase', fontStyle: 'normal' }}>
-            — Chiniot Furniture Point Design Manifesto, 2007
+            — Chiniot Furniture Point Design Manifesto, 2016
           </cite>
         </motion.blockquote>
       </section>

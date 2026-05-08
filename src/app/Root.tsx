@@ -21,14 +21,15 @@ function Navigation() {
     { label: 'Collections', to: '/collections' },
     { label: 'Sustainability', to: '/sustainability' },
     { label: 'About', to: '/about' },
+    { label: 'Contact', to: '/contact' },
   ]
 
   const linkStyle = {
     fontFamily: 'Inter, sans-serif',
-    fontSize: 'clamp(0.68rem, 1.6vw, 0.78rem)',
-    letterSpacing: '0.1em',
+    fontSize: 'clamp(0.75rem, 1.2vw, 0.875rem)',
+    letterSpacing: '0.15em',
     textTransform: 'uppercase' as const,
-    color: '#6B6358',
+    color: '#1A1A1A',
   }
 
   return (
@@ -41,7 +42,7 @@ function Navigation() {
       }}
     >
       <div className="flex items-center justify-between px-6 md:px-16 h-16 md:h-20">
-        <Link to="/" style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1rem, 2.2vw, 1.45rem)', fontWeight: 600, color: '#1C1917', letterSpacing: '0.12em' }}>
+        <Link to="/" style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(1rem, 2.2vw, 1.45rem)', fontWeight: 600, color: '#1A1A1A', letterSpacing: '0.12em' }}>
           CHINIOT FURNITURE POINT
         </Link>
 
@@ -54,10 +55,19 @@ function Navigation() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="w-9 h-9 flex items-center justify-center hover:opacity-70 transition-opacity">
+          <button
+            className="w-9 h-9 flex items-center justify-center hover:opacity-70 transition-opacity"
+            aria-label="Search"
+            title="Search"
+          >
             <Search size={18} color="#6B6358" />
           </button>
-          <button className="md:hidden w-9 h-9 flex items-center justify-center" onClick={() => setMobileOpen(!mobileOpen)}>
+          <button
+            className="md:hidden w-9 h-9 flex items-center justify-center"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            title={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
             {mobileOpen ? <X size={20} color="#1C1917" /> : <Menu size={20} color="#1C1917" />}
           </button>
         </div>
@@ -69,7 +79,7 @@ function Navigation() {
             className="overflow-hidden md:hidden bg-[#F7F4F0] border-t border-[#EDE8E1]">
             <div className="flex flex-col px-6 py-6 gap-4">
               {navLinks.map((link) => (
-                <Link key={link.label} to={link.to} style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1rem, 3.5vw, 1.2rem)', color: '#1C1917', fontWeight: 400 }}
+                <Link key={link.label} to={link.to} style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(0.75rem, 1.2vw, 0.875rem)', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1A1A1A', fontWeight: 500 }}
                   className="py-3">
                   {link.label}
                 </Link>

@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { Eye, EyeOff, Smartphone, Check } from 'lucide-react'
 import * as THREE from 'three'
-import { createChair, addStudioLights, applyExplodedProgress, ChairParts } from './chairGeometry'
+import { createChair, addStudioLights, applyExplodedProgress, ChairParts, setupStudioNeutralEnvironment } from './chairGeometry'
 
 const COLOR_VARIANTS = [
   { id: 'ivory',    name: 'Ivory Boucle',    color: '#F2EDE4', roughness: 0.91, metalColor: '#C4965A' },
@@ -58,7 +58,7 @@ export function ProductViewer() {
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.shadowMap.enabled = true
-    renderer.shadowMap.type = THREE.PCFShadowMap
+    renderer.shadowMap.type = THREE.VSMShadowMap
     renderer.setClearColor(0x1c1917, 1)
 
     const scene  = new THREE.Scene()
@@ -66,6 +66,7 @@ export function ProductViewer() {
     camera.position.set(0, 0.7, 2.6)
     camera.lookAt(0, 0.55, 0)
 
+    const disposeStudioEnvironment = setupStudioNeutralEnvironment(renderer, scene)
     addStudioLights(scene)
 
     const v0     = COLOR_VARIANTS[0]
@@ -99,6 +100,9 @@ export function ProductViewer() {
       // Inertia decay
       s.velY *= 0.90
       s.velX *= 0.90
+      if (!isDragging.current && isHovering.current) {
+        s.rotY += 0.0035
+      }
       s.rotY += s.velY
       s.rotX  = Math.max(-0.38, Math.min(0.38, s.rotX + s.velX))
 
@@ -122,12 +126,14 @@ export function ProductViewer() {
       ro.disconnect()
       chair.dispose()
       chairRef.current = null
+      disposeStudioEnvironment()
       renderer.dispose()
     }
   }, [])
 
   // ── Pointer drag handlers ─────────────────────────────────────────────────
   const isDragging = useRef(false)
+  const isHovering = useRef(false)
   const lastPos    = useRef({ x: 0, y: 0 })
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -143,6 +149,12 @@ export function ProductViewer() {
     lastPos.current = { x: e.clientX, y: e.clientY }
   }
   const onPointerUp = () => { isDragging.current = false; setGrabbing(false) }
+  const onPointerEnter = () => { isHovering.current = true }
+  const onPointerLeaveViewer = () => {
+    isHovering.current = false
+    isDragging.current = false
+    setGrabbing(false)
+  }
   const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     anim.current.camZ = Math.max(1.5, Math.min(4.5, anim.current.camZ + e.deltaY * 0.003))
   }
@@ -174,15 +186,15 @@ export function ProductViewer() {
           fontSize: 'clamp(2rem, 3.5vw, 3rem)',
           fontWeight: 500, color: '#F7F4F0', lineHeight: '1.15', marginBottom: '1.2rem',
         }}>
-          The Forma<br /><em>Lounge Chair</em>
+          The Mehran<br /><em>Wooden Armchair</em>
         </h2>
 
         <p style={{
           fontFamily: 'Inter, sans-serif', fontSize: '0.92rem',
           lineHeight: '1.75', color: '#9B9085', marginBottom: '2.5rem',
         }}>
-          Drag to rotate 360°. Scroll to zoom. Explore every angle and see the precision
-          of handcrafted joinery up close.
+          Drag to rotate 360 degrees and scroll to zoom. Explore the detailing of this
+          handcrafted wooden armchair from our broader range of beds, sofas, tables, and wardrobes.
         </p>
 
         {/* Color swatches */}
@@ -247,7 +259,7 @@ export function ProductViewer() {
             <div style={{
               fontFamily: '"Playfair Display", serif',
               fontSize: '1.8rem', fontWeight: 500, color: '#F7F4F0',
-            }}>$2,840</div>
+            }}>PKR 118,000</div>
           </div>
           <button onClick={handleAddToCart}
             className="flex items-center gap-2 bg-[#C4965A] text-white hover:bg-[#B8855A] transition-colors px-6 md:px-8 py-4 flex-1 justify-center"
@@ -264,7 +276,8 @@ export function ProductViewer() {
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onPointerLeave={onPointerUp}
+        onPointerEnter={onPointerEnter}
+        onPointerLeave={onPointerLeaveViewer}
         onWheel={onWheel}
         style={{ cursor: grabbing ? 'grabbing' : 'grab' }}
       >

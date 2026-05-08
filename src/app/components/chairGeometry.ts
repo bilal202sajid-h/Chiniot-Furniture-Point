@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js'
 
 export interface ChairConfig {
   cushionColor?: string
@@ -118,23 +119,46 @@ export function createChair(config: ChairConfig = {}): ChairParts {
   return { group, seat, back, lArm, rArm, legs, cushionMat, dispose }
 }
 
-// ── Studio lighting ──────────────────────────────────────────────────────────
-export function addStudioLights(scene: THREE.Scene) {
-  scene.add(new THREE.AmbientLight(0xfff8ee, 0.45))
+// ── Studio neutral HDR-like environment and lighting ───────────────────────
+export function setupStudioNeutralEnvironment(renderer: THREE.WebGLRenderer, scene: THREE.Scene) {
+  const pmrem = new THREE.PMREMGenerator(renderer)
+  const envScene = new RoomEnvironment(renderer)
+  const envMap = pmrem.fromScene(envScene, 0.04).texture
+  scene.environment = envMap
 
-  const key = new THREE.DirectionalLight(0xffffff, 1.9)
-  key.position.set(3, 5, 2)
+  return () => {
+    envMap.dispose()
+    pmrem.dispose()
+  }
+}
+
+export function addStudioLights(scene: THREE.Scene) {
+  scene.add(new THREE.AmbientLight(0xffffff, 0.48))
+
+  const key = new THREE.DirectionalLight(0xffffff, 1.15)
+  key.position.set(2.8, 5.2, 2.2)
   key.castShadow = true
   key.shadow.mapSize.setScalar(2048)
   key.shadow.camera.near = 0.1
-  key.shadow.camera.far = 20
+  key.shadow.camera.far = 22
+  key.shadow.radius = 7
+  key.shadow.blurSamples = 12
+  key.shadow.normalBias = 0.02
   scene.add(key)
 
-  const fill = new THREE.DirectionalLight(0xd8e8ff, 0.55)
-  fill.position.set(-2.5, 3, -1.5)
+  const fill = new THREE.DirectionalLight(0xf0f0f0, 0.45)
+  fill.position.set(-2.6, 3.2, -1.6)
   scene.add(fill)
 
-  const rim = new THREE.PointLight(0xffe8c8, 0.25)
-  rim.position.set(0, -0.5, 3.5)
+  const rim = new THREE.HemisphereLight(0xffffff, 0xe6e6e6, 0.28)
   scene.add(rim)
+
+  const contactShadow = new THREE.Mesh(
+    new THREE.PlaneGeometry(6, 6),
+    new THREE.ShadowMaterial({ opacity: 0.18 })
+  )
+  contactShadow.rotation.x = -Math.PI / 2
+  contactShadow.position.y = 0
+  contactShadow.receiveShadow = true
+  scene.add(contactShadow)
 }

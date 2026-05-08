@@ -23,7 +23,7 @@ interface ProductCardProps {
 const WHATSAPP_NUMBER = '923180740205'
 
 function whatsappLink(product: Product) {
-  const msg = encodeURIComponent(`Hi, I'm interested in the ${product.name} ${product.subtitle} ($${product.price.toLocaleString()}). Could you provide more details?`)
+  const msg = encodeURIComponent(`Hi, I'm interested in the ${product.name} ${product.subtitle} (PKR ${product.price.toLocaleString()}). Could you provide more details?`)
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`
 }
 
@@ -117,7 +117,7 @@ export function ProductCard({ product }: ProductCardProps) {
               </div>
             </div>
             <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.92rem', fontWeight: 500, color: '#1C1917', whiteSpace: 'nowrap' }}>
-              ${product.price.toLocaleString()}
+              PKR {product.price.toLocaleString()}
             </div>
           </div>
         </div>

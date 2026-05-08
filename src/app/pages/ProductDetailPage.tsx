@@ -9,7 +9,7 @@ import { Footer } from '../components/Footer'
 const WHATSAPP_NUMBER = '923180740205'
 
 function whatsappLink(name: string, subtitle: string, price: number) {
-  const msg = encodeURIComponent(`Hi, I'm interested in the ${name} ${subtitle} ($${price.toLocaleString()}). Could you provide more details?`)
+  const msg = encodeURIComponent(`Hi, I'm interested in the ${name} ${subtitle} (PKR ${price.toLocaleString()}). Could you provide more details?`)
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`
 }
 
@@ -103,7 +103,7 @@ export function ProductDetailPage() {
 
             {/* Price */}
             <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '2rem', fontWeight: 500, color: '#1C1917', marginBottom: '1.5rem' }}>
-              ${product.price.toLocaleString()}
+              PKR {product.price.toLocaleString()}
             </div>
 
             {/* WhatsApp CTA */}
@@ -119,7 +119,7 @@ export function ProductDetailPage() {
             </a>
 
             <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: '#9B9085', marginTop: '1rem', textAlign: 'center' }}>
-              Lead time 6–8 weeks · Free white-glove delivery
+              Lead time 2-4 weeks · Nationwide delivery in Pakistan
             </p>
           </motion.div>
         </div>

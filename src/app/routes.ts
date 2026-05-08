@@ -5,6 +5,7 @@ import { CollectionsPage } from './pages/CollectionsPage'
 import { ProductDetailPage } from './pages/ProductDetailPage'
 import { SustainabilityPage } from './pages/SustainabilityPage'
 import { AboutPage } from './pages/AboutPage'
+import { ContactPage } from './pages/ContactPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 
 export const router = createBrowserRouter([
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       { path: 'products/:id', Component: ProductDetailPage },
       { path: 'sustainability', Component: SustainabilityPage },
       { path: 'about', Component: AboutPage },
+      { path: 'contact', Component: ContactPage },
       { path: '*', Component: NotFoundPage },
     ],
   },

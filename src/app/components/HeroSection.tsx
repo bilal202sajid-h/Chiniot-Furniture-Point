@@ -1,8 +1,5 @@
-import { useRef, useEffect } from 'react'
 import { motion } from 'motion/react'
 import { ChevronRight } from 'lucide-react'
-import * as THREE from 'three'
-import { createChair, addStudioLights } from './chairGeometry'
 
 interface HeroSectionProps {
   onExploreClick: () => void
@@ -10,94 +7,10 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const parent = canvas.parentElement
-    if (!parent) return
-
-    // ── Renderer ───────────────────────────────────────────────────────────
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    renderer.shadowMap.enabled = true
-    renderer.shadowMap.type = THREE.PCFShadowMap
-
-    // ── Scene / camera ─────────────────────────────────────────────────────
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100)
-    camera.position.set(0, 0.7, 2.5)
-    camera.lookAt(0, 0.5, 0)
-
-    addStudioLights(scene)
-
-    const { group: chairGroup, dispose } = createChair({
-      cushionColor: '#F2EDE4',
-      roughness: 0.88,
-      metalColor: '#C4965A',
-    })
-    chairGroup.position.set(0.55, -0.12, 0)
-    scene.add(chairGroup)
-
-    // ── Mouse parallax ─────────────────────────────────────────────────────
-    let mouseX = 0
-    let mouseY = 0
-    const onMouseMove = (e: MouseEvent) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5
-      mouseY = (e.clientY / window.innerHeight - 0.5) * 0.12
-    }
-    window.addEventListener('mousemove', onMouseMove)
-
-    // ── Resize ─────────────────────────────────────────────────────────────
-    const resize = () => {
-      const w = parent.clientWidth
-      const h = parent.clientHeight
-      if (w > 0 && h > 0) {
-        renderer.setSize(w, h, false)
-        camera.aspect = w / h
-        camera.updateProjectionMatrix()
-      }
-    }
-    resize()
-    const ro = new ResizeObserver(resize)
-    ro.observe(parent)
-
-    // ── Animation ──────────────────────────────────────────────────────────
-    const start = performance.now()
-    let raf: number
-
-    const animate = () => {
-      raf = requestAnimationFrame(animate)
-      const elapsed = (performance.now() - start) * 0.001
-
-      // Auto-rotate with gentle mouse parallax
-      chairGroup.rotation.y = elapsed * 0.32 + mouseX
-      chairGroup.rotation.x += (mouseY - chairGroup.rotation.x) * 0.04
-
-      renderer.render(scene, camera)
-    }
-    animate()
-
-    return () => {
-      cancelAnimationFrame(raf)
-      ro.disconnect()
-      window.removeEventListener('mousemove', onMouseMove)
-      dispose()
-      renderer.dispose()
-    }
-  }, [])
+  // Rotating chair removed — placeholder kept for future 3D content.
 
   return (
     <section className="relative min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-5rem)] overflow-hidden bg-[#F7F4F0]">
-      {/* Vanilla Three.js canvas — no R3F, no event-connection issues */}
-      <div className="absolute inset-0 pointer-events-none">
-        <canvas
-          ref={canvasRef}
-          style={{ display: 'block', width: '100%', height: '100%' }}
-        />
-      </div>
-
       {/* Gradient overlay for text legibility */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -139,8 +52,8 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
             marginBottom: '1.8rem',
           }}
         >
-          Design That<br />
-          <em>Defines</em> Space
+          Solid Wood Furniture<br />
+          <em>for Pakistani Homes</em>
         </motion.h1>
 
         <motion.p
@@ -156,8 +69,8 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
             marginBottom: '2.5rem',
           }}
         >
-          Handcrafted furniture for the modern interior. Each piece is an
-          architectural statement born from material excellence and timeless proportion.
+          Handcrafted beds, sofas, dining tables, center tables, chairs, wardrobes,
+          and side units made from quality wood for everyday family living in Pakistan.
         </motion.p>
 
         <motion.div
@@ -204,9 +117,9 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           style={{ borderTop: '1px solid #E2DDD6' }}
         >
           {[
-            { value: '240+', label: 'Artisan Pieces' },
-            { value: '32', label: 'Countries' },
-            { value: '18yr', label: 'Heritage' },
+            { value: '200+', label: 'Wooden Designs' },
+            { value: '10yr', label: 'Craft Experience' },
+            { value: '100%', label: 'Solid Wood Focus' },
           ].map((stat) => (
             <div key={stat.label}>
               <div
