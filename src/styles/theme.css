@@ -2,26 +2,26 @@
 
 :root {
   --font-size: 16px;
-  --background: #f7f7f7;
-  --foreground: #1a1a1a;
-  --card: #f7f7f7;
-  --card-foreground: #1a1a1a;
-  --popover: #f7f7f7;
-  --popover-foreground: #1a1a1a;
-  --primary: #1a1a1a;
-  --primary-foreground: #ffffff;
-  --secondary: #f7f7f7;
-  --secondary-foreground: #1a1a1a;
-  --muted: #f0f0f0;
-  --muted-foreground: #4a4a4a;
-  --accent: #1a1a1a;
-  --accent-foreground: #ffffff;
+  --background: #F4F1EB;
+  --foreground: #2C2520;
+  --card: #E8E2D9;
+  --card-foreground: #2C2520;
+  --popover: #F4F1EB;
+  --popover-foreground: #2C2520;
+  --primary: #2C2520;
+  --primary-foreground: #F4F1EB;
+  --secondary: #E8E2D9;
+  --secondary-foreground: #2C2520;
+  --muted: #E8E2D9;
+  --muted-foreground: #8A7E6E;
+  --accent: #B8845C;
+  --accent-foreground: #F4F1EB;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: #d9d9d9;
+  --border: rgba(180, 170, 152, 0.35);
   --input: transparent;
-  --input-background: #fafafa;
-  --switch-background: #cbced4;
+  --input-background: #F4F1EB;
+  --switch-background: #D4CAB8;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --ring: oklch(0.708 0 0);
@@ -105,11 +105,18 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --color-off-white: #f7f7f7;
-  --color-deep-charcoal: #1a1a1a;
-  --color-border-subtle: #d9d9d9;
-  --color-warm-grey: #e2dfda;
-  --color-light-wood: #efe5d2;
+
+  /* Nature Distilled palette tokens */
+  --color-cloud-dancer: #F4F1EB;
+  --color-warm-stone: #E8E2D9;
+  --color-wood-grain: #D4CAB8;
+  --color-pebble: #B5AA98;
+  --color-drift: #8A7E6E;
+  --color-deep-bark: #2C2520;
+  --color-forest-floor: #1A1714;
+  --color-burnt-sienna: #B8845C;
+  --color-sage-mist: #A8B5A0;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -133,65 +140,70 @@
     @apply bg-background text-foreground;
   }
 
-  /**
-  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
-  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
-  */
-
   html {
     font-size: var(--font-size);
   }
 
+  /* Montserrat for headings — bold, uppercase, wide tracking */
   h1 {
     font-size: var(--text-2xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    font-family: 'Bodoni Moda', 'Times New Roman', serif;
-    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.1;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--foreground);
   }
 
   h2 {
     font-size: var(--text-xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    font-family: 'Bodoni Moda', 'Times New Roman', serif;
-    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.15;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--foreground);
   }
 
   h3 {
     font-size: var(--text-lg);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    font-family: 'Bodoni Moda', 'Times New Roman', serif;
-    color: #1a1a1a;
+    font-weight: 600;
+    line-height: 1.2;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--foreground);
   }
 
   h4 {
     font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    font-family: 'Bodoni Moda', 'Times New Roman', serif;
-    color: #1a1a1a;
+    font-weight: 600;
+    line-height: 1.3;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--foreground);
   }
 
+  /* Inter for body elements */
   label {
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   button {
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   input {
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 }

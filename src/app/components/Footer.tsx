@@ -1,4 +1,6 @@
 import { Link } from 'react-router'
+import { motion } from 'motion/react'
+import { buttonHover, buttonTap } from '../motion/presets'
 
 const WHATSAPP_NUMBER = '923180740205'
 
@@ -12,28 +14,30 @@ function WhatsAppIcon() {
 
 export function Footer() {
   return (
-    <footer className="bg-[#1C1917] px-6 md:px-16 py-12">
+    <footer className="px-6 md:px-16 py-12" style={{ backgroundColor: '#1A1714' }}>
       <div className="max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between gap-12">
         {/* Brand + WhatsApp CTA */}
         <div className="max-w-xs">
-          <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.45rem', fontWeight: 600, color: '#F7F4F0', letterSpacing: '0.12em', marginBottom: '1rem' }}>
-            CHINIOT FURNITURE POINT
+          <div style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '0.85rem', fontWeight: 700, color: '#F4F1EB', letterSpacing: '0.16em', marginBottom: '1rem', textTransform: 'uppercase' }}>
+            Chiniot Furniture Point
           </div>
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.82rem', lineHeight: '1.75', color: '#6B6358', marginBottom: '1.5rem' }}>
+          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.82rem', lineHeight: '1.75', color: '#8A7E6E', marginBottom: '1.5rem' }}>
             Wooden furniture for Pakistani homes, including beds, sofas, tables, chairs,
             wardrobes, and storage pieces made for everyday family use.
           </p>
-          <a
+          <motion.a
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hi, I\'d like to enquire about your furniture collection.')}`}
             target="_blank"
             rel="noopener noreferrer"
+            whileHover={buttonHover}
+            whileTap={buttonTap}
             className="inline-flex items-center gap-2 px-5 py-3 transition-opacity hover:opacity-90"
-            style={{ backgroundColor: '#25D366', fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#fff' }}
+            style={{ backgroundColor: '#25D366', fontFamily: 'Montserrat, sans-serif', fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#fff', fontWeight: 600, border: 'none' }}
           >
             <WhatsAppIcon />
             Chat on WhatsApp
-          </a>
+          </motion.a>
         </div>
 
         {/* Links */}
@@ -76,7 +80,7 @@ export function Footer() {
             },
           ].map((col) => (
             <div key={col.title}>
-              <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.65rem', letterSpacing: '0.18em', color: '#C4965A', textTransform: 'uppercase', marginBottom: '1.2rem' }}>
+              <div style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '0.6rem', letterSpacing: '0.2em', color: '#B8845C', textTransform: 'uppercase', marginBottom: '1.2rem', fontWeight: 600 }}>
                 {col.title}
               </div>
               <ul className="flex flex-col gap-2.5">
@@ -84,14 +88,14 @@ export function Footer() {
                   <li key={link.label}>
                     {'href' in link ? (
                       <a href={link.href} target="_blank" rel="noopener noreferrer"
-                        style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.82rem', color: '#6B6358' }}
-                        className="hover:text-[#C4C0BA] transition-colors inline-flex items-center gap-1.5">
-                        <WhatsAppIcon /> {link.label}
+                        style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.82rem', color: '#8A7E6E' }}
+                        className="hover:text-[#D4CAB8] transition-colors inline-flex items-center gap-1.5">
+                        {link.label}
                       </a>
                     ) : (
                       <Link to={link.to!}
-                        style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.82rem', color: '#6B6358' }}
-                        className="hover:text-[#C4C0BA] transition-colors">
+                        style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.82rem', color: '#8A7E6E' }}
+                        className="hover:text-[#D4CAB8] transition-colors">
                         {link.label}
                       </Link>
                     )}
@@ -103,13 +107,13 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid #2D2926' }}>
-        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', color: '#4A4440', letterSpacing: '0.06em' }}>
+      <div className="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid rgba(212, 202, 184, 0.15)' }}>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', color: '#6B5E52', letterSpacing: '0.06em' }}>
           © 2025 Chiniot Furniture Point. All rights reserved.
         </p>
         <div className="flex gap-6">
           {['Privacy Policy', 'Terms of Service', 'Cookie Preferences'].map((item) => (
-            <a key={item} href="#" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', color: '#4A4440' }} className="hover:text-[#6B6358] transition-colors">
+            <a key={item} href="#" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', color: '#6B5E52' }} className="hover:text-[#8A7E6E] transition-colors">
               {item}
             </a>
           ))}

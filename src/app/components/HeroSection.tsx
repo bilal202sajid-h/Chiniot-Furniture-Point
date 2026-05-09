@@ -1,5 +1,7 @@
-import { motion } from 'motion/react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import { ChevronRight } from 'lucide-react'
+import { useRef } from 'react'
+import { buttonHover, buttonTap } from '../motion/presets'
 
 interface HeroSectionProps {
   onExploreClick: () => void
@@ -7,21 +9,44 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProps) {
-  // Rotating chair removed — placeholder kept for future 3D content.
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  const gradientOpacity = useTransform(scrollYProgress, [0, 0.5], [0.15, 0.6])
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 60])
 
   return (
-    <section className="relative min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-5rem)] overflow-hidden bg-[#F7F4F0]">
-      {/* Gradient overlay for text legibility */}
-      <div
+    <section
+      ref={sectionRef}
+      className="relative min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-5rem)] overflow-hidden"
+      style={{ backgroundColor: '#F4F1EB' }}
+    >
+      {/* Parallax gradient overlay */}
+      <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{
+          opacity: gradientOpacity,
           background:
-            'linear-gradient(90deg, #F7F4F0 46%, rgba(247,244,240,0.8) 62%, rgba(247,244,240,0.15) 78%, transparent 100%)',
+            'linear-gradient(135deg, rgba(44,37,32,0.4) 0%, rgba(184,132,92,0.15) 50%, transparent 100%)',
+        }}
+      />
+
+      {/* Decorative organic shape */}
+      <div
+        className="absolute -right-20 -bottom-20 w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.07]"
+        style={{
+          background: 'radial-gradient(circle, #B8845C 0%, transparent 70%)',
         }}
       />
 
       {/* Text content */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-28 max-w-xl md:max-w-2xl">
+      <motion.div
+        style={{ y: textY }}
+        className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-28 max-w-xl md:max-w-2xl"
+      >
         <motion.span
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -30,13 +55,14 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
             fontFamily: 'Montserrat, sans-serif',
             fontSize: '0.68rem',
             letterSpacing: '0.28em',
-            color: '#C4965A',
+            color: '#B8845C',
             textTransform: 'uppercase',
+            fontWeight: 600,
             display: 'block',
             marginBottom: '1.5rem',
           }}
         >
-         
+          Handcrafted Since 2016
         </motion.span>
 
         <motion.h1
@@ -44,16 +70,19 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           style={{
-            fontFamily: '"Playfair Display", serif',
-            fontSize: 'clamp(3rem, 5.5vw, 5.2rem)',
-            lineHeight: '1.08',
-            fontWeight: 500,
-            color: '#1C1917',
+            fontFamily: '"Montserrat", sans-serif',
+            fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)',
+            lineHeight: '1.06',
+            fontWeight: 800,
+            color: '#2C2520',
             marginBottom: '1.8rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.02em',
           }}
         >
-          Solid Wood Furniture<br />
-          <em>for Pakistani Homes</em>
+          Solid Wood<br />
+          Furniture<br />
+          <span style={{ color: '#B8845C' }}>for Home</span>
         </motion.h1>
 
         <motion.p
@@ -61,16 +90,16 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
           style={{
-            fontFamily: 'Montserrat, sans-serif',
-            fontSize: '1rem',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.95rem',
             lineHeight: '1.8',
-            color: '#7A7269',
+            color: '#8A7E6E',
             maxWidth: '420px',
             marginBottom: '2.5rem',
           }}
         >
           Handcrafted beds, sofas, dining tables, center tables, chairs, wardrobes,
-          and side units made from quality wood for everyday family living in Pakistan.
+          and side units made from quality wood for everyday family living.
         </motion.p>
 
         <motion.div
@@ -79,34 +108,44 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           transition={{ duration: 0.7, delay: 0.8 }}
           className="flex flex-wrap gap-4"
         >
-          <button
+          <motion.button
             onClick={onExploreClick}
-            className="flex items-center gap-2 bg-[#1C1917] text-white hover:bg-[#3D3530] transition-colors duration-300 mobile-w-full justify-center"
+            whileHover={buttonHover}
+            whileTap={buttonTap}
+            className="flex items-center gap-2 text-white transition-colors duration-300 mobile-w-full justify-center"
             style={{
               fontFamily: 'Montserrat, sans-serif',
-              fontSize: '0.78rem',
-              letterSpacing: '0.12em',
+              fontSize: '0.72rem',
+              letterSpacing: '0.14em',
               padding: '1rem 2rem',
               textTransform: 'uppercase',
+              fontWeight: 600,
+              backgroundColor: '#2C2520',
+              border: 'none',
             }}
           >
             Explore Collection
             <ChevronRight size={14} />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={onViewIn3DClick}
-            className="flex items-center gap-2 border text-[#1C1917] hover:bg-[#1C1917] hover:text-white transition-colors duration-300 w-full md:w-auto justify-center"
+            whileHover={buttonHover}
+            whileTap={buttonTap}
+            className="flex items-center gap-2 transition-colors duration-300 w-full md:w-auto justify-center"
             style={{
               fontFamily: 'Montserrat, sans-serif',
-              fontSize: '0.78rem',
-              letterSpacing: '0.12em',
+              fontSize: '0.72rem',
+              letterSpacing: '0.14em',
               padding: '1rem 2rem',
               textTransform: 'uppercase',
-              borderColor: '#C4C0BA',
+              fontWeight: 600,
+              color: '#2C2520',
+              border: '1px solid #D4CAB8',
+              backgroundColor: 'transparent',
             }}
           >
             View in 3D
-          </button>
+          </motion.button>
         </motion.div>
 
         <motion.div
@@ -114,7 +153,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.1 }}
           className="flex flex-col sm:flex-row gap-8 mt-14 pt-10"
-          style={{ borderTop: '1px solid #E2DDD6' }}
+          style={{ borderTop: '1px solid rgba(212, 202, 184, 0.5)' }}
         >
           {[
             { value: '200+', label: 'Wooden Designs' },
@@ -124,10 +163,10 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
             <div key={stat.label}>
               <div
                 style={{
-                  fontFamily: '"Playfair Display", serif',
+                  fontFamily: '"Montserrat", sans-serif',
                   fontSize: '1.65rem',
-                  fontWeight: 500,
-                  color: '#1C1917',
+                  fontWeight: 700,
+                  color: '#2C2520',
                   lineHeight: '1.2',
                 }}
               >
@@ -135,10 +174,10 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
               </div>
               <div
                 style={{
-                  fontFamily: 'Montserrat, sans-serif',
+                  fontFamily: 'Inter, sans-serif',
                   fontSize: '0.68rem',
                   letterSpacing: '0.14em',
-                  color: '#9B9085',
+                  color: '#B5AA98',
                   textTransform: 'uppercase',
                   marginTop: '0.25rem',
                 }}
@@ -148,7 +187,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
             </div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
@@ -159,10 +198,10 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
       >
         <div
           style={{
-            fontFamily: 'Montserrat, sans-serif',
+            fontFamily: 'Inter, sans-serif',
             fontSize: '0.6rem',
             letterSpacing: '0.2em',
-            color: '#9B9085',
+            color: '#B5AA98',
             textTransform: 'uppercase',
           }}
         >
@@ -171,8 +210,8 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
         <motion.div
           animate={{ scaleY: [1, 0.3, 1] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-px bg-[#C4C0BA] origin-top"
-          style={{ height: '40px' }}
+          className="w-px origin-top"
+          style={{ height: '40px', backgroundColor: '#D4CAB8' }}
         />
       </motion.div>
     </section>

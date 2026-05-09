@@ -1,96 +1,76 @@
-/* Global resets and responsive tweaks */
+/* ── Nature Distilled Design System ──────────────────────────────────────────── */
 :root {
-  --header-height: 4rem; /* 64px mobile */
-  --off-white: #f7f7f7;
-  --deep-charcoal: #1a1a1a;
-  --border-subtle: #d9d9d9;
-  --warm-grey: #e2dfda;
-  --light-wood: #efe5d2;
+  /* Core palette */
+  --cloud-dancer: #F4F1EB;
+  --warm-stone: #E8E2D9;
+  --wood-grain: #D4CAB8;
+  --pebble: #B5AA98;
+  --drift: #8A7E6E;
+  --deep-bark: #2C2520;
+  --forest-floor: #1A1714;
+  --burnt-sienna: #B8845C;
+  --sage-mist: #A8B5A0;
+
+  /* Functional */
+  --header-height: 4rem;
+  --border-subtle: rgba(180, 170, 152, 0.35);
+  --glass-bg: rgba(244, 241, 235, 0.55);
+  --glass-border: rgba(212, 202, 184, 0.4);
+  --glass-blur: 24px;
 }
 
 @media (min-width: 768px) {
-  :root { --header-height: 5rem; } /* 80px desktop */
+  :root { --header-height: 5rem; }
 }
 
-html { box-sizing: border-box; font-size: clamp(14px, 1.4vw, 16px); }
+/* ── Reset ──────────────────────────────────────────────────────────────────── */
+html {
+  box-sizing: border-box;
+  font-size: clamp(14px, 1.4vw, 16px);
+  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+}
 *, *:before, *:after { box-sizing: inherit; }
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Montserrat', sans-serif;
-  color: var(--deep-charcoal);
-  background-color: var(--off-white);
+  font-family: 'Inter', sans-serif;
+  color: var(--deep-bark);
+  background-color: var(--cloud-dancer);
 }
 
+/* ── Typography ─────────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--deep-charcoal);
-  font-family: 'Bodoni Moda', 'Times New Roman', serif;
-}
-
-section.bg-white,
-section.bg-\[\#F7F4F0\] {
-  background-color: var(--off-white) !important;
-}
-
-section + section {
-  margin-top: clamp(2rem, 6vw, 6rem);
-}
-
-/* Thin, subtle architectural borders */
-.border,
-[class*='border-'] {
-  border-color: var(--border-subtle) !important;
-}
-
-/* Editorial button treatment: no shadows, sharp borders, all caps */
-button,
-a[class*='bg-'],
-a[class*='inline-flex'] {
-  border: 1px solid var(--border-subtle);
-  box-shadow: none !important;
+  color: var(--deep-bark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em !important;
-  font-size: clamp(0.75rem, 1.2vw, 0.875rem) !important;
-  transition: opacity 260ms ease, background-color 260ms ease, color 260ms ease;
+  letter-spacing: 0.06em;
 }
 
-a.bg-\[\#1C1917\],
-button.bg-\[\#1C1917\] {
-  background-color: var(--deep-charcoal) !important;
-  color: #ffffff !important;
+/* ── Utility Backgrounds ────────────────────────────────────────────────────── */
+.bg-cloud   { background-color: var(--cloud-dancer); }
+.bg-stone   { background-color: var(--warm-stone); }
+.bg-bark    { background-color: var(--deep-bark); }
+.bg-forest  { background-color: var(--forest-floor); }
+
+/* ── Glassmorphism ──────────────────────────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 1px solid var(--glass-border);
 }
 
-a.bg-\[\#1C1917\]:hover,
-button.bg-\[\#1C1917\]:hover {
-  background-color: var(--deep-charcoal) !important;
-  opacity: 0.88;
+.glass-dark {
+  background: rgba(26, 23, 20, 0.65);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 1px solid rgba(212, 202, 184, 0.15);
 }
 
-/* 3D stage: studio-neutral warm grey to light wood gradient */
-#viewer {
-  background: linear-gradient(145deg, var(--warm-grey) 0%, var(--light-wood) 62%, var(--off-white) 100%) !important;
-}
-
-/* Eliminate card shadows for gallery-style flat layout */
-.group.cursor-pointer .relative.overflow-hidden,
-.group.relative.overflow-hidden.cursor-pointer,
-.block.p-6.md\:p-7.bg-white.border,
-[class*='card'],
-[class*='shadow-'] {
-  box-shadow: none !important;
-  border: 1px solid var(--border-subtle);
-}
-
-/* Navbar / button editorial micro-typography */
-nav a,
-nav button {
-  text-transform: uppercase;
-  letter-spacing: 0.15em !important;
-  font-size: clamp(0.75rem, 1.2vw, 0.875rem) !important;
-}
-
+/* ── Responsive Images ──────────────────────────────────────────────────────── */
 img, picture, video, canvas { max-width: 100%; height: auto; display: block; }
 
 .cover-image {
@@ -100,42 +80,37 @@ img, picture, video, canvas { max-width: 100%; height: auto; display: block; }
   object-fit: cover;
 }
 
-/* Ensure content isn't visually cramped on very small screens when components use px-8 / px-6 */
-@media (max-width: 420px) {
-  .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
-  .px-6 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
-  .pt-40 { padding-top: 2.5rem !important; }
-}
-
-/* Slightly reduce large gap/mt values on small screens */
-@media (max-width: 480px) {
-  .mt-14 { margin-top: 1.25rem !important; }
-  .gap-10 { gap: 1rem !important; }
-}
-
-/* Utility: center absolute elements that use left-1/2 -translate-x-1/2 but keep responsive offsets */
-.centered-horizontal { left: 50%; transform: translateX(-50%); }
-
-/* Make nav fixed height available as a CSS variable for components that need it */
-.site-header-space { height: var(--header-height); }
-
-/* Accessibility: reduce motion for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
-}
-
-/* Mobile-friendly touch targets and CTA utilities */
+/* ── Mobile Touch Targets ───────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   button, a[class*="inline-flex"], a[class*="flex"] {
     min-height: 44px;
   }
+}
 
-  /* Utility to force buttons/links to full width on small screens */
-  .mobile-w-full {
-    width: 100% !important;
-    display: block !important;
+@media (max-width: 420px) {
+  .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .px-6 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+}
+
+/* ── Accessibility ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
+}
 
-  /* Reduce oversized gaps on very small screens */
-  .gap-12 { gap: 0.75rem !important; }
+/* ── Lenis ──────────────────────────────────────────────────────────────────── */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }

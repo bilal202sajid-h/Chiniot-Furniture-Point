@@ -5,6 +5,7 @@ import { ProductGrid } from '../components/ProductGrid'
 import { ImageWithFallback } from '../components/figma/ImageWithFallback'
 import { PRODUCTS } from '../data/products'
 import { Footer } from '../components/Footer'
+import { buttonHover, buttonTap } from '../motion/presets'
 
 const WHATSAPP_NUMBER = '923180740205'
 
@@ -38,9 +39,9 @@ export function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F7F4F0] pt-[calc(var(--header-height)+0.5rem)]">
-        <p className="font-['Playfair_Display',serif] text-[1.5rem] text-[#1C1917]">Product not found.</p>
-        <Link to="/collections" className="mt-6 text-[0.78rem] uppercase tracking-[0.1em] text-[#C4965A]">
+      <div className="min-h-screen flex flex-col items-center justify-center px-6" style={{ backgroundColor: '#F4F1EB', paddingTop: 'calc(var(--header-height) + 0.5rem)' }}>
+        <p style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '1.5rem', color: '#2C2520', fontWeight: 700, textTransform: 'uppercase' }}>Product not found.</p>
+        <Link to="/collections" className="mt-6" style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#B8845C', fontWeight: 600 }}>
           ← Back to Collections
         </Link>
       </div>
@@ -52,21 +53,36 @@ export function ProductDetailPage() {
   return (
     <>
       {/* Breadcrumb */}
-      <div className="pt-16 md:pt-28 pb-6 px-6 md:px-16 bg-[#F7F4F0]">
-        <Link to="/collections" className="inline-flex items-center gap-1.5 text-[0.72rem] uppercase tracking-[0.1em] text-[#9B9085] transition-opacity hover:opacity-70">
+      <div className="pt-16 md:pt-28 pb-6 px-6 md:px-16" style={{ backgroundColor: '#F4F1EB' }}>
+        <Link to="/collections" className="inline-flex items-center gap-1.5 transition-opacity hover:opacity-70" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#B5AA98' }}>
           <ChevronLeft size={13} /> Collections
         </Link>
       </div>
 
       {/* Main product section */}
-      <section className="px-6 md:px-16 pb-12 md:pb-24 bg-[#F7F4F0]">
+      <section className="px-6 md:px-16 pb-12 md:pb-24" style={{ backgroundColor: '#F4F1EB' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start max-w-6xl mx-auto w-full">
           {/* Image */}
           <motion.div initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}
-            className="relative aspect-[4/5] overflow-hidden bg-[#EDE9E3]">
+            className="relative aspect-[4/5] overflow-hidden" style={{ backgroundColor: '#E8E2D9' }}>
             <ImageWithFallback src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
             {product.badge && (
-              <div className="absolute top-5 left-5 bg-[#C4965A] px-3 py-1.5 text-[0.65rem] uppercase tracking-[0.16em] text-white">
+              <div
+                className="absolute top-5 left-5"
+                style={{
+                  background: 'rgba(244, 241, 235, 0.65)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(244, 241, 235, 0.35)',
+                  padding: '0.35rem 0.75rem',
+                  fontFamily: 'Montserrat, sans-serif',
+                  fontSize: '0.6rem',
+                  letterSpacing: '0.16em',
+                  textTransform: 'uppercase',
+                  color: '#2C2520',
+                  fontWeight: 600,
+                }}
+              >
                 {product.badge}
               </div>
             )}
@@ -74,49 +90,61 @@ export function ProductDetailPage() {
 
           {/* Info */}
           <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="lg:pt-4">
-            <span className="mb-4 block text-[0.65rem] uppercase tracking-[0.22em] text-[#C4965A]">
+            <span className="mb-4 block" style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '0.65rem', letterSpacing: '0.22em', color: '#B8845C', textTransform: 'uppercase', fontWeight: 600 }}>
               {product.category}
             </span>
-            <h1 className="mb-1 font-['Playfair_Display',serif] text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.1] text-[#1C1917]">
+            <h1 className="mb-1" style={{ fontFamily: '"Montserrat", sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, lineHeight: '1.1', color: '#2C2520', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
               {product.name}
             </h1>
-            <p className="mb-7 text-[1rem] text-[#7A7269]">
+            <p className="mb-7" style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', color: '#8A7E6E' }}>
               {product.subtitle}
             </p>
 
-            <p className="mb-8 text-[0.92rem] leading-[1.8] text-[#5A5450]">
+            <p className="mb-8" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.92rem', lineHeight: '1.8', color: '#6B5E52' }}>
               {product.details || product.description}
             </p>
 
             {/* Specs for chair */}
             {isChair && (
-              <div className="mb-8 grid grid-cols-2 gap-x-6 gap-y-3 border-b border-[#D4CFC8] pb-8">
+              <div className="mb-8 grid grid-cols-2 gap-x-6 gap-y-3 pb-8" style={{ borderBottom: '1px solid rgba(212, 202, 184, 0.5)' }}>
                 {SPECS.map((s) => (
                   <div key={s.label}>
-                    <div className="text-[0.65rem] uppercase tracking-[0.12em] text-[#9B9085]">{s.label}</div>
-                    <div className="mt-1 text-[0.88rem] text-[#1C1917]">{s.value}</div>
+                    <div style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.14em', color: '#B5AA98', fontWeight: 600 }}>{s.label}</div>
+                    <div className="mt-1" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.88rem', color: '#2C2520' }}>{s.value}</div>
                   </div>
                 ))}
               </div>
             )}
 
             {/* Price */}
-            <div className="mb-6 font-['Playfair_Display',serif] text-[2rem] font-medium text-[#1C1917]">
+            <div className="mb-6" style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '2rem', fontWeight: 700, color: '#2C2520' }}>
               PKR {product.price.toLocaleString()}
             </div>
 
             {/* WhatsApp CTA */}
-            <a
+            <motion.a
               href={whatsappLink(product.name, product.subtitle, product.price)}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2.5 bg-[#25D366] py-4 text-[0.78rem] uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90"
+              whileHover={buttonHover}
+              whileTap={buttonTap}
+              className="flex w-full items-center justify-center gap-2.5 py-4 transition-opacity hover:opacity-90"
+              style={{
+                backgroundColor: '#25D366',
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: '0.72rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                color: '#fff',
+                fontWeight: 600,
+                border: 'none',
+              }}
             >
               <WhatsAppIcon />
               Enquire on WhatsApp
-            </a>
+            </motion.a>
 
-            <p className="mt-4 text-center text-[0.75rem] text-[#9B9085]">
+            <p className="mt-4 text-center" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: '#B5AA98' }}>
               Lead time 2-4 weeks · Nationwide delivery in Pakistan
             </p>
           </motion.div>
@@ -124,8 +152,18 @@ export function ProductDetailPage() {
       </section>
 
       {/* Related products */}
-      <section className="py-20 md:py-24 px-6 md:px-16 bg-white">
-        <h2 className="mb-10 font-['Playfair_Display',serif] text-[clamp(1.5rem,2.5vw,2rem)] font-medium text-[#1C1917]">
+      <section className="py-20 md:py-24 px-6 md:px-16" style={{ backgroundColor: '#E8E2D9' }}>
+        <h2
+          className="mb-10"
+          style={{
+            fontFamily: '"Montserrat", sans-serif',
+            fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
+            fontWeight: 700,
+            color: '#2C2520',
+            textTransform: 'uppercase',
+            letterSpacing: '0.04em',
+          }}
+        >
           You May Also Like
         </h2>
         <ProductGrid products={related} columns={3} />
