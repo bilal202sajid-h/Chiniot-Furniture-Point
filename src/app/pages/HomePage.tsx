@@ -99,13 +99,13 @@ export function HomePage() {
             <div className="flex items-end justify-between gap-4 flex-wrap">
               <h2
                 style={{
-                  fontFamily: '"Montserrat", sans-serif',
+                  fontFamily: '"Playfair Display", serif',
                   fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   lineHeight: '1.08',
                   color: '#2C2520',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.04em',
+                  textTransform: 'none',
+                  letterSpacing: '-0.01em',
                 }}
               >
                 Beds, Sofas, Tables & More
@@ -245,13 +245,13 @@ export function HomePage() {
             </span>
             <h2
               style={{
-                fontFamily: '"Montserrat", sans-serif',
+                fontFamily: '"Playfair Display", serif',
                 fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
-                fontWeight: 700,
+                fontWeight: 600,
                 lineHeight: '1.1',
                 color: '#2C2520',
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
+                textTransform: 'none',
+                letterSpacing: '-0.01em',
               }}
             >
               Curated Spaces
@@ -365,13 +365,13 @@ export function HomePage() {
           <h2
             className="mb-6"
             style={{
-              fontFamily: '"Montserrat", sans-serif',
+              fontFamily: '"Playfair Display", serif',
               fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)',
-              fontWeight: 700,
+              fontWeight: 600,
               lineHeight: '1.15',
               color: '#F4F1EB',
-              textTransform: 'uppercase',
-              letterSpacing: '0.04em',
+              textTransform: 'none',
+              letterSpacing: '-0.01em',
             }}
           >
             Complete Wooden Home Collection
