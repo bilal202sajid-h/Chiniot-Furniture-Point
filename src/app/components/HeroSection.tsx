@@ -27,7 +27,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           style={{
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: '0.68rem',
             letterSpacing: '0.28em',
             color: '#C4965A',
@@ -61,7 +61,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
           style={{
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: '1rem',
             lineHeight: '1.8',
             color: '#7A7269',
@@ -83,7 +83,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
             onClick={onExploreClick}
             className="flex items-center gap-2 bg-[#1C1917] text-white hover:bg-[#3D3530] transition-colors duration-300 mobile-w-full justify-center"
             style={{
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: 'Montserrat, sans-serif',
               fontSize: '0.78rem',
               letterSpacing: '0.12em',
               padding: '1rem 2rem',
@@ -95,9 +95,9 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
           </button>
           <button
             onClick={onViewIn3DClick}
-            className="flex items-center gap-2 border text-[#1C1917] hover:bg-[#1C1917] hover:text-white transition-colors duration-300 mobile-w-full justify-center"
+            className="flex items-center gap-2 border text-[#1C1917] hover:bg-[#1C1917] hover:text-white transition-colors duration-300 w-full md:w-auto justify-center"
             style={{
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: 'Montserrat, sans-serif',
               fontSize: '0.78rem',
               letterSpacing: '0.12em',
               padding: '1rem 2rem',
@@ -135,7 +135,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
               </div>
               <div
                 style={{
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'Montserrat, sans-serif',
                   fontSize: '0.68rem',
                   letterSpacing: '0.14em',
                   color: '#9B9085',
@@ -159,7 +159,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
       >
         <div
           style={{
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: '0.6rem',
             letterSpacing: '0.2em',
             color: '#9B9085',

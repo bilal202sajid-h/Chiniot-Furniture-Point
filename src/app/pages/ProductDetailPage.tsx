@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router'
 import { motion } from 'motion/react'
 import { ChevronLeft } from 'lucide-react'
-import { ProductCard } from '../components/ProductCard'
+import { ProductGrid } from '../components/ProductGrid'
 import { ImageWithFallback } from '../components/figma/ImageWithFallback'
 import { PRODUCTS } from '../data/products'
 import { Footer } from '../components/Footer'
@@ -38,9 +38,9 @@ export function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F7F4F0]" style={{ paddingTop: 'calc(var(--header-height) + 0.5rem)' }}>
-        <p style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', color: '#1C1917' }}>Product not found.</p>
-        <Link to="/collections" className="mt-6" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.78rem', letterSpacing: '0.1em', color: '#C4965A', textTransform: 'uppercase' }}>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F7F4F0] pt-[calc(var(--header-height)+0.5rem)]">
+        <p className="font-['Playfair_Display',serif] text-[1.5rem] text-[#1C1917]">Product not found.</p>
+        <Link to="/collections" className="mt-6 text-[0.78rem] uppercase tracking-[0.1em] text-[#C4965A]">
           ← Back to Collections
         </Link>
       </div>
@@ -53,21 +53,20 @@ export function ProductDetailPage() {
     <>
       {/* Breadcrumb */}
       <div className="pt-16 md:pt-28 pb-6 px-6 md:px-16 bg-[#F7F4F0]">
-        <Link to="/collections" className="inline-flex items-center gap-1.5 hover:opacity-70 transition-opacity"
-          style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', letterSpacing: '0.1em', color: '#9B9085', textTransform: 'uppercase' }}>
+        <Link to="/collections" className="inline-flex items-center gap-1.5 text-[0.72rem] uppercase tracking-[0.1em] text-[#9B9085] transition-opacity hover:opacity-70">
           <ChevronLeft size={13} /> Collections
         </Link>
       </div>
 
       {/* Main product section */}
       <section className="px-6 md:px-16 pb-12 md:pb-24 bg-[#F7F4F0]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start max-w-6xl mx-auto w-full">
           {/* Image */}
           <motion.div initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}
-            className="relative overflow-hidden bg-[#EDE9E3]" style={{ aspectRatio: '4/5' }}>
+            className="relative aspect-[4/5] overflow-hidden bg-[#EDE9E3]">
             <ImageWithFallback src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
             {product.badge && (
-              <div className="absolute top-5 left-5" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', backgroundColor: '#C4965A', color: '#fff', padding: '0.3rem 0.75rem' }}>
+              <div className="absolute top-5 left-5 bg-[#C4965A] px-3 py-1.5 text-[0.65rem] uppercase tracking-[0.16em] text-white">
                 {product.badge}
               </div>
             )}
@@ -75,34 +74,34 @@ export function ProductDetailPage() {
 
           {/* Info */}
           <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="lg:pt-4">
-            <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.65rem', letterSpacing: '0.22em', color: '#C4965A', textTransform: 'uppercase', display: 'block', marginBottom: '1rem' }}>
+            <span className="mb-4 block text-[0.65rem] uppercase tracking-[0.22em] text-[#C4965A]">
               {product.category}
             </span>
-            <h1 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 500, color: '#1C1917', lineHeight: 1.1, marginBottom: '0.4rem' }}>
+            <h1 className="mb-1 font-['Playfair_Display',serif] text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.1] text-[#1C1917]">
               {product.name}
             </h1>
-            <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', color: '#7A7269', marginBottom: '1.8rem' }}>
+            <p className="mb-7 text-[1rem] text-[#7A7269]">
               {product.subtitle}
             </p>
 
-            <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.92rem', lineHeight: '1.8', color: '#5A5450', marginBottom: '2rem' }}>
+            <p className="mb-8 text-[0.92rem] leading-[1.8] text-[#5A5450]">
               {product.details || product.description}
             </p>
 
             {/* Specs for chair */}
             {isChair && (
-              <div className="grid grid-cols-2 gap-x-6 gap-y-3 mb-8 pb-8" style={{ borderBottom: '1px solid #D4CFC8' }}>
+              <div className="mb-8 grid grid-cols-2 gap-x-6 gap-y-3 border-b border-[#D4CFC8] pb-8">
                 {SPECS.map((s) => (
                   <div key={s.label}>
-                    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.65rem', letterSpacing: '0.12em', color: '#9B9085', textTransform: 'uppercase' }}>{s.label}</div>
-                    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.88rem', color: '#1C1917', marginTop: '0.15rem' }}>{s.value}</div>
+                    <div className="text-[0.65rem] uppercase tracking-[0.12em] text-[#9B9085]">{s.label}</div>
+                    <div className="mt-1 text-[0.88rem] text-[#1C1917]">{s.value}</div>
                   </div>
                 ))}
               </div>
             )}
 
             {/* Price */}
-            <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '2rem', fontWeight: 500, color: '#1C1917', marginBottom: '1.5rem' }}>
+            <div className="mb-6 font-['Playfair_Display',serif] text-[2rem] font-medium text-[#1C1917]">
               PKR {product.price.toLocaleString()}
             </div>
 
@@ -111,14 +110,13 @@ export function ProductDetailPage() {
               href={whatsappLink(product.name, product.subtitle, product.price)}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2.5 text-white transition-opacity hover:opacity-90 py-4"
-              style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.78rem', letterSpacing: '0.12em', textTransform: 'uppercase', backgroundColor: '#25D366' }}
+              className="flex w-full items-center justify-center gap-2.5 bg-[#25D366] py-4 text-[0.78rem] uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90"
             >
               <WhatsAppIcon />
               Enquire on WhatsApp
             </a>
 
-            <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: '#9B9085', marginTop: '1rem', textAlign: 'center' }}>
+            <p className="mt-4 text-center text-[0.75rem] text-[#9B9085]">
               Lead time 2-4 weeks · Nationwide delivery in Pakistan
             </p>
           </motion.div>
@@ -127,16 +125,10 @@ export function ProductDetailPage() {
 
       {/* Related products */}
       <section className="py-20 md:py-24 px-6 md:px-16 bg-white">
-        <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 500, color: '#1C1917', marginBottom: '2.5rem' }}>
+        <h2 className="mb-10 font-['Playfair_Display',serif] text-[clamp(1.5rem,2.5vw,2rem)] font-medium text-[#1C1917]">
           You May Also Like
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-          {related.map((p, i) => (
-            <motion.div key={p.id} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}>
-              <ProductCard product={p} />
-            </motion.div>
-          ))}
-        </div>
+        <ProductGrid products={related} columns={3} />
       </section>
 
       <Footer />
