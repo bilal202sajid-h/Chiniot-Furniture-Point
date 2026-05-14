@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { ProductCard } from '../components/ProductCard'
 import { ImageWithFallback } from '../components/figma/ImageWithFallback'
-import { PRODUCTS, COLLECTIONS } from '../data/products'
+import { COLLECTIONS } from '../data/products'
+import { listProducts } from '../services/api'
 import { Footer } from '../components/Footer'
 import { easternFadeIn, easternFadeInWithDelay, staggerContainer, staggerItem } from '../motion/presets'
 
@@ -11,7 +12,31 @@ const CATEGORIES = ['All', 'Beds', 'Sofas', 'Tables', 'Chairs', 'Wardrobes']
 export function CollectionsPage() {
   const [activeCategory, setActiveCategory] = useState('All')
 
-  const filtered = activeCategory === 'All' ? PRODUCTS : PRODUCTS.filter((p) => p.category === activeCategory)
+  const [products, setProducts] = useState<any[]>([])
+
+  useEffect(() => {
+    let mounted = true
+    ;(async () => {
+      try {
+        const data = await listProducts()
+        if (!mounted) return
+        // map backend fields to frontend shape
+        const mapped = data.map((p: any) => ({
+          ...p,
+          imageUrl: p.image_url,
+          price: typeof p.price === 'string' ? Number(p.price) : p.price,
+        }))
+        setProducts(mapped)
+      } catch (e) {
+        console.error('Failed to load products', e)
+      }
+    })()
+    return () => {
+      mounted = false
+    }
+  }, [])
+
+  const filtered = activeCategory === 'All' ? products : products.filter((p) => p.category === activeCategory)
 
   return (
     <>

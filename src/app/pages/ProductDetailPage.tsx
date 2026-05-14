@@ -3,7 +3,8 @@ import { motion } from 'motion/react'
 import { ChevronLeft } from 'lucide-react'
 import { ProductGrid } from '../components/ProductGrid'
 import { ImageWithFallback } from '../components/figma/ImageWithFallback'
-import { PRODUCTS } from '../data/products'
+import { useEffect, useState } from 'react'
+import { getProduct, listProducts } from '../services/api'
 import { Footer } from '../components/Footer'
 import { buttonHover, buttonTap } from '../motion/presets'
 
@@ -34,8 +35,32 @@ const SPECS = [
 export function ProductDetailPage() {
   const { id } = useParams<{ id: string }>()
 
-  const product = PRODUCTS.find((p) => p.id === Number(id))
-  const related = PRODUCTS.filter((p) => p.id !== Number(id)).slice(0, 3)
+  const [product, setProduct] = useState<any | null>(null)
+  const [related, setRelated] = useState<any[]>([])
+
+  useEffect(() => {
+    let mounted = true
+    ;(async () => {
+      try {
+        if (!id) return
+        const p = await getProduct(Number(id))
+        if (!mounted) return
+        const mapped = { ...p, imageUrl: p.image_url, price: typeof p.price === 'string' ? Number(p.price) : p.price }
+        setProduct(mapped)
+
+        const all = await listProducts()
+        if (!mounted) return
+        const mappedAll = all.map((x: any) => ({ ...x, imageUrl: x.image_url, price: typeof x.price === 'string' ? Number(x.price) : x.price }))
+        const rel = mappedAll.filter((x: any) => x.id !== Number(id)).slice(0, 3)
+        setRelated(rel)
+      } catch (e) {
+        console.error('Failed to load product', e)
+      }
+    })()
+    return () => {
+      mounted = false
+    }
+  }, [id])
 
   if (!product) {
     return (
@@ -48,7 +73,7 @@ export function ProductDetailPage() {
     )
   }
 
-  const isChair = product.id === 1
+  const isChair = product && product.id === 1
 
   return (
     <>

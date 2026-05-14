@@ -1,11 +1,12 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, Link } from 'react-router'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 import { HeroSection } from '../components/HeroSection'
 import { ImageWithFallback } from '../components/figma/ImageWithFallback'
 import { Footer } from '../components/Footer'
-import { PRODUCTS, COLLECTIONS } from '../data/products'
+import { COLLECTIONS } from '../data/products'
+import { listProducts } from '../services/api'
 import { staggerContainer, staggerItem, buttonHover, buttonTap } from '../motion/presets'
 
 export function HomePage() {
@@ -33,38 +34,40 @@ export function HomePage() {
   }
 
   // Bento grid cards with asymmetric sizing
-  const bentoCards = [
-    {
-      product: PRODUCTS[0],
-      className: 'md:col-span-2 md:row-span-2',
-      aspect: 'aspect-[4/3] md:aspect-[16/11]',
-      titleSize: 'text-[clamp(1.3rem,2.5vw,1.8rem)]',
-    },
-    {
-      product: PRODUCTS[1],
-      className: 'md:col-span-1',
-      aspect: 'aspect-[4/3] md:aspect-[4/3.5]',
-      titleSize: 'text-[clamp(1rem,1.8vw,1.3rem)]',
-    },
-    {
-      product: PRODUCTS[2],
-      className: 'md:col-span-1',
-      aspect: 'aspect-[4/3] md:aspect-[4/3.5]',
-      titleSize: 'text-[clamp(1rem,1.8vw,1.3rem)]',
-    },
-    {
-      product: PRODUCTS[3],
-      className: 'md:col-span-1',
-      aspect: 'aspect-[4/3] md:aspect-[4/3]',
-      titleSize: 'text-[clamp(1rem,1.8vw,1.3rem)]',
-    },
-    {
-      product: PRODUCTS[4],
-      className: 'md:col-span-2',
-      aspect: 'aspect-[4/3] md:aspect-[21/9]',
-      titleSize: 'text-[clamp(1.2rem,2.2vw,1.6rem)]',
-    },
-  ]
+  const [products, setProducts] = useState<any[]>([])
+
+  useEffect(() => {
+    let mounted = true
+    ;(async () => {
+      try {
+        const data = await listProducts()
+        if (!mounted) return
+        const mapped = data.map((p: any) => ({
+          ...p,
+          imageUrl: p.image_url,
+          price: typeof p.price === 'string' ? Number(p.price) : p.price,
+        }))
+        setProducts(mapped)
+      } catch (e) {
+        console.error('Failed to load products', e)
+      }
+    })()
+    return () => {
+      mounted = false
+    }
+  }, [])
+
+  const bentoCards = (
+    products.length >= 5
+      ? [
+          { product: products[0], className: 'md:col-span-2 md:row-span-2', aspect: 'aspect-[4/3] md:aspect-[16/11]', titleSize: 'text-[clamp(1.3rem,2.5vw,1.8rem)]' },
+          { product: products[1], className: 'md:col-span-1', aspect: 'aspect-[4/3] md:aspect-[4/3.5]', titleSize: 'text-[clamp(1rem,1.8vw,1.3rem)]' },
+          { product: products[2], className: 'md:col-span-1', aspect: 'aspect-[4/3] md:aspect-[4/3.5]', titleSize: 'text-[clamp(1rem,1.8vw,1.3rem)]' },
+          { product: products[3], className: 'md:col-span-1', aspect: 'aspect-[4/3] md:aspect-[4/3]', titleSize: 'text-[clamp(1rem,1.8vw,1.3rem)]' },
+          { product: products[4], className: 'md:col-span-2', aspect: 'aspect-[4/3] md:aspect-[21/9]', titleSize: 'text-[clamp(1.2rem,2.2vw,1.6rem)]' },
+        ]
+      : []
+  )
 
   return (
     <>
