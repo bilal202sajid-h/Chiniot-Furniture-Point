@@ -8,7 +8,6 @@ The admin panel allows you to manage:
 - **Frontend Content**: Edit navbar, hero section, footer, and social links
 
 ## Backend Setup
-
 ### 1. Database Migration
 Run the following to create the new tables (add material, dimensions, stock to products):
 
