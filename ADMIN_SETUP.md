@@ -151,7 +151,7 @@ VITE_API_URL=http://localhost:8000/api
 
 For production:
 ```env
-VITE_API_URL=https://your-api-domain.com/api
+VITE_API_URL=https://cfp-backend-a7wo.onrender.com/api
 ```
 
 ### 2. Start Development Server
