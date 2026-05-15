@@ -84,7 +84,7 @@ export default function CollectionsPage() {
     setUploading(true)
     try {
       const result = await uploadProductImage(token, file)
-      setFormData({ ...formData, image_url: result.secure_url })
+      setFormData({ ...formData, image_url: result.image_url })
       setError('')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Image upload failed')

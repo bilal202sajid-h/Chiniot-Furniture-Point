@@ -102,7 +102,7 @@ export default function FrontendEditorPage() {
     setError('')
     try {
       const result = await uploadProductImage(token, file)
-      setHeroConfig({ ...heroConfig, image_url: result.secure_url })
+      setHeroConfig({ ...heroConfig, image_url: result.image_url })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Image upload failed')
     } finally {
