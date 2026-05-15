@@ -130,7 +130,7 @@ export default function ProductsPage() {
       setFormData({
         name: '',
         subtitle: '',
-        price: 0,
+        price: '',
         category: '',
         description: '',
         details: '',
@@ -174,7 +174,7 @@ export default function ProductsPage() {
       setFormData({
         name: '',
         subtitle: '',
-        price: 0,
+        price: '',
         category: '',
         description: '',
         details: '',
