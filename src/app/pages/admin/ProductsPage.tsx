@@ -29,7 +29,7 @@ interface Product {
   id?: number
   name: string
   subtitle: string
-  price: number
+  price: string
   category: string
   description: string
   details?: string
@@ -56,7 +56,7 @@ export default function ProductsPage() {
   const [formData, setFormData] = useState<Product>({
     name: '',
     subtitle: '',
-    price: 0,
+    price: '',
     category: '',
     description: '',
     details: '',
@@ -115,13 +115,14 @@ export default function ProductsPage() {
     if (!token) return
 
     try {
+      const payload = { ...formData, price: String(formData.price) }
       if (editingId) {
-        await updateProduct(token, editingId, formData)
+        await updateProduct(token, editingId, payload)
         setProducts(
-          products.map((p) => (p.id === editingId ? { ...formData, id: editingId } : p))
+          products.map((p) => (p.id === editingId ? { ...payload, id: editingId } : p))
         )
       } else {
-        const newProduct = await createProduct(token, formData)
+        const newProduct = await createProduct(token, payload)
         setProducts([...products, newProduct])
       }
 
@@ -277,12 +278,10 @@ export default function ProductsPage() {
                 <div className="space-y-2">
                   <label className="block text-sm font-medium">Price (PKR) *</label>
                   <Input
-                    type="number"
+                    type="text"
                     value={formData.price}
-                    onChange={(e) =>
-                      setFormData({ ...formData, price: parseFloat(e.target.value) })
-                    }
-                    placeholder="0"
+                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    placeholder="e.g., PKR 12,000 or 12000"
                     required
                   />
                 </div>
@@ -299,7 +298,7 @@ export default function ProductsPage() {
                   >
                     <option value="">Select a category</option>
                     {categories.map((cat) => (
-                      <option key={cat.id} value={cat.display_name}>
+                      <option key={cat.id} value={cat.name}>
                         {cat.display_name}
                       </option>
                     ))}
@@ -472,10 +471,15 @@ export default function ProductsPage() {
                         <td className="px-4 py-2 text-sm">{product.name}</td>
                         <td className="px-4 py-2 text-sm text-gray-600">{product.category}</td>
                         <td className="px-4 py-2 text-sm font-medium">
-                          {product.price.toLocaleString('en-PK', {
-                            style: 'currency',
-                            currency: 'PKR',
-                          })}
+                          {(() => {
+                            const p = product.price
+                            // If price is numeric (string or number), format as PKR; otherwise show as-is
+                            const num = typeof p === 'number' ? p : Number(String(p).replace(/[^0-9.-]+/g, ''))
+                            if (!Number.isNaN(num) && String(p).trim() !== '') {
+                              return num.toLocaleString('en-PK', { style: 'currency', currency: 'PKR' })
+                            }
+                            return String(p)
+                          })()}
                         </td>
                         <td className="px-4 py-2 text-sm">{product.stock}</td>
                         <td className="px-4 py-2 text-sm flex gap-2">
