@@ -94,7 +94,14 @@ export const createCollection = async (token: string, collection: any) => {
     },
     body: JSON.stringify(collection),
   })
-  if (!response.ok) throw new Error('Failed to create collection')
+  if (!response.ok) {
+    try {
+      const err = await response.json()
+      throw new Error(err.detail || err.message || JSON.stringify(err))
+    } catch (e) {
+      throw new Error('Failed to create collection')
+    }
+  }
   return response.json()
 }
 
