@@ -45,8 +45,23 @@ export const createProduct = async (token: string, product: any) => {
     body: JSON.stringify(product),
   })
   if (!response.ok) {
-    const error = await response.json()
-    throw new Error(error.detail || 'Failed to create product')
+    let errBody
+    try {
+      errBody = await response.json()
+    } catch (e) {
+      throw new Error('Failed to create product')
+    }
+
+    const detail = errBody.detail ?? errBody.message ?? errBody
+    let msg: string
+    if (typeof detail === 'string') {
+      msg = detail
+    } else if (Array.isArray(detail)) {
+      msg = detail.map((d: any) => (d.msg ? d.msg : JSON.stringify(d))).join('; ')
+    } else {
+      msg = JSON.stringify(detail)
+    }
+    throw new Error(msg || 'Failed to create product')
   }
   return response.json()
 }
@@ -177,8 +192,18 @@ export const uploadProductImage = async (token: string, file: File) => {
     body: formData,
   })
   if (!response.ok) {
-    const error = await response.json()
-    throw new Error(error.detail || 'Image upload failed')
+    let errBody
+    try {
+      errBody = await response.json()
+    } catch (e) {
+      throw new Error('Image upload failed')
+    }
+    const detail = errBody.detail ?? errBody.message ?? errBody
+    let msg: string
+    if (typeof detail === 'string') msg = detail
+    else if (Array.isArray(detail)) msg = detail.map((d: any) => (d.msg ? d.msg : JSON.stringify(d))).join('; ')
+    else msg = JSON.stringify(detail)
+    throw new Error(msg || 'Image upload failed')
   }
   return response.json()
 }
