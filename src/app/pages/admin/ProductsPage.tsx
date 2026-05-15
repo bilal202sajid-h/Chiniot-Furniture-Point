@@ -69,6 +69,19 @@ export default function ProductsPage() {
     stock: 0,
   })
 
+  const normalizeCategory = (value: string) => {
+    const trimmed = value.trim()
+    const matched = categories.find((category) => {
+      return category.name === trimmed || category.display_name === trimmed
+    })
+
+    if (matched) {
+      return matched.name
+    }
+
+    return trimmed.toLowerCase().replace(/\s+/g, '-')
+  }
+
   useEffect(() => {
     if (!isAdminLoggedIn()) {
       navigate('/admin/login')
@@ -115,7 +128,11 @@ export default function ProductsPage() {
     if (!token) return
 
     try {
-      const payload = { ...formData, price: String(formData.price) }
+      const payload = {
+        ...formData,
+        price: String(formData.price),
+        category: normalizeCategory(formData.category),
+      }
       if (editingId) {
         await updateProduct(token, editingId, payload)
         setProducts(
@@ -150,7 +167,11 @@ export default function ProductsPage() {
   }
 
   const handleEdit = (product: Product) => {
-    setFormData(product)
+    setFormData({
+      ...product,
+      price: String(product.price ?? ''),
+      category: normalizeCategory(product.category),
+    })
     setEditingId(product.id || null)
     setDialogOpen(true)
   }
@@ -292,7 +313,9 @@ export default function ProductsPage() {
                   <select
                     aria-label="Category"
                     value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, category: normalizeCategory(e.target.value) })
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md"
                     required
                   >

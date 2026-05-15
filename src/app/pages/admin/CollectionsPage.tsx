@@ -53,6 +53,24 @@ export default function CollectionsPage() {
     sort_order: 0,
   })
 
+  const normalizeCategoryValue = (value: string) => {
+    const trimmed = value.trim()
+    const matched = categories.find((category) => {
+      return category.name === trimmed || category.display_name === trimmed
+    })
+
+    if (matched) {
+      return matched.name
+    }
+
+    return trimmed.toLowerCase().replace(/\s+/g, '-')
+  }
+
+  const categoryLabelByName = (value: string) => {
+    const matched = categories.find((category) => category.name === value)
+    return matched?.display_name || value
+  }
+
   useEffect(() => {
     if (!isAdminLoggedIn()) {
       navigate('/admin/login')
@@ -97,13 +115,17 @@ export default function CollectionsPage() {
     if (!token) return
 
     try {
+      const payload = {
+        ...formData,
+        categories: (formData.categories || []).map((category) => normalizeCategoryValue(category)),
+      }
       if (editingId) {
-        await updateCollection(token, editingId, formData)
+        await updateCollection(token, editingId, payload)
         setCollections(
-          collections.map((c) => (c.id === editingId ? { ...formData, id: editingId } : c))
+          collections.map((c) => (c.id === editingId ? { ...payload, id: editingId } : c))
         )
       } else {
-        const newCollection = await createCollection(token, formData)
+        const newCollection = await createCollection(token, payload)
         setCollections([...collections, newCollection])
       }
 
@@ -124,7 +146,10 @@ export default function CollectionsPage() {
   }
 
   const handleEdit = (collection: Collection) => {
-    setFormData(collection)
+    setFormData({
+      ...collection,
+      categories: (collection.categories || []).map((category) => normalizeCategoryValue(category)),
+    })
     setEditingId(collection.id || null)
     setDialogOpen(true)
   }
@@ -157,16 +182,17 @@ export default function CollectionsPage() {
   }
 
   const toggleCategory = (categoryName: string) => {
+    const normalized = normalizeCategoryValue(categoryName)
     const current = formData.categories || []
-    if (current.includes(categoryName)) {
+    if (current.includes(normalized)) {
       setFormData({
         ...formData,
-        categories: current.filter((c) => c !== categoryName),
+        categories: current.filter((c) => c !== normalized),
       })
     } else {
       setFormData({
         ...formData,
-        categories: [...current, categoryName],
+        categories: [...current, normalized],
       })
     }
   }
@@ -277,8 +303,8 @@ export default function CollectionsPage() {
                       <label key={category.id} className="flex items-center gap-2">
                         <input
                           type="checkbox"
-                          checked={(formData.categories || []).includes(category.display_name)}
-                          onChange={() => toggleCategory(category.display_name)}
+                          checked={(formData.categories || []).includes(category.name)}
+                          onChange={() => toggleCategory(category.name)}
                           className="h-4 w-4"
                         />
                         <span className="text-sm">{category.display_name}</span>
@@ -341,7 +367,7 @@ export default function CollectionsPage() {
                     <div className="flex gap-1 flex-wrap mt-3">
                       {collection.categories.map((cat) => (
                         <span key={cat} className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded">
-                          {cat}
+                          {categoryLabelByName(cat)}
                         </span>
                       ))}
                     </div>
