@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card'
 import { Button } from '../../components/ui/button'
+import { Alert, AlertDescription } from '../../components/ui/alert'
 import AdminLayout from '../../components/AdminLayout'
 import { listProducts, listCollections, listCategories } from '../../services/api'
 import { isAdminLoggedIn } from '../../services/auth'
@@ -15,6 +16,7 @@ export default function AdminDashboard() {
     categories: 0,
   })
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     if (!isAdminLoggedIn()) {
@@ -23,20 +25,36 @@ export default function AdminDashboard() {
     }
 
     const fetchStats = async () => {
+      setLoading(true)
+      setError('')
+
       try {
-        const [products, collections, categories] = await Promise.all([
-          listProducts(),
-          listCollections(),
-          listCategories(),
-        ])
+        const products = await listProducts().catch((e) => {
+          console.error('Failed to load products', e)
+          setError((prev) => prev || 'Failed to load products')
+          return []
+        })
+
+        const collections = await listCollections().catch((e) => {
+          console.error('Failed to load collections', e)
+          setError((prev) => prev || 'Failed to load collections')
+          return []
+        })
+
+        const categories = await listCategories().catch((e) => {
+          console.error('Failed to load categories', e)
+          setError((prev) => prev || 'Failed to load categories')
+          return []
+        })
 
         setStats({
-          products: products.length,
-          collections: collections.length,
-          categories: categories.length,
+          products: Array.isArray(products) ? products.length : 0,
+          collections: Array.isArray(collections) ? collections.length : 0,
+          categories: Array.isArray(categories) ? categories.length : 0,
         })
       } catch (err) {
         console.error('Failed to fetch stats:', err)
+        setError('Failed to fetch dashboard stats')
       } finally {
         setLoading(false)
       }
@@ -84,6 +102,12 @@ export default function AdminDashboard() {
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
           <p className="text-gray-600 mt-1">Welcome to Chiniot Furniture Admin Panel</p>
         </div>
+
+        {error && (
+          <Alert variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
