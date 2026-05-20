@@ -6,6 +6,7 @@ import { ProductDetailPage } from './pages/ProductDetailPage'
 import { SustainabilityPage } from './pages/SustainabilityPage'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
+import { ReviewsPage } from './pages/ReviewsPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import AdminLoginPage from './pages/admin/LoginPage'
 import AdminDashboard from './pages/admin/DashboardPage'
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: 'sustainability', Component: SustainabilityPage },
       { path: 'about', Component: AboutPage },
       { path: 'contact', Component: ContactPage },
+      { path: 'reviews', Component: ReviewsPage },
       { path: '*', Component: NotFoundPage },
     ],
   },

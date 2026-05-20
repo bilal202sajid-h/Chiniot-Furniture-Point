@@ -22,6 +22,7 @@ function Navigation() {
     { label: 'Collections', to: '/collections' },
     { label: 'Sustainability', to: '/sustainability' },
     { label: 'About', to: '/about' },
+    { label: 'Reviews', to: '/reviews' },
     { label: 'Contact', to: '/contact' },
   ]
 

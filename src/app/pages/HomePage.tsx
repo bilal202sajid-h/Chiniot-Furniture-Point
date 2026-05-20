@@ -7,6 +7,7 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback'
 import { Footer } from '../components/Footer'
 import { COLLECTIONS } from '../data/products'
 import { listProducts } from '../services/api'
+import { ReviewsSection } from '../components/ReviewsSection'
 import { staggerContainer, staggerItem, buttonHover, buttonTap } from '../motion/presets'
 
 export function HomePage() {
@@ -325,6 +326,8 @@ export function HomePage() {
           </motion.div>
         </div>
       </section>
+
+      <ReviewsSection />
 
       {/* ── Collections Banner with Parallax ──────────────────────────────── */}
       <section

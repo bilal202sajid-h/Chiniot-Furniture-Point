@@ -213,6 +213,34 @@ export const getFrontendConfig = async (key: string) => {
   return response.json()
 }
 
+// Reviews
+export type ReviewPayload = {
+  author_name: string
+  rating: number
+  comment: string
+  city?: string | null
+}
+
+export const listReviews = async (opts?: { skip?: number; limit?: number }) => {
+  const params = new URLSearchParams()
+  if (opts?.skip !== undefined) params.append('skip', String(opts.skip))
+  if (opts?.limit !== undefined) params.append('limit', String(opts.limit))
+  const query = params.toString()
+  const response = await fetch(`${API_BASE_URL}/reviews${query ? `?${query}` : ''}`)
+  if (!response.ok) throw new Error(await readApiError(response, 'Failed to fetch reviews'))
+  return response.json()
+}
+
+export const createReview = async (review: ReviewPayload) => {
+  const response = await fetch(`${API_BASE_URL}/reviews`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(review),
+  })
+  if (!response.ok) throw new Error(await readApiError(response, 'Failed to submit review'))
+  return response.json()
+}
+
 export const updateFrontendConfig = async (token: string, key: string, configValue: any) => {
   const response = await fetch(`${API_BASE_URL}/admin/frontend-config/key/${key}`, {
     method: 'PATCH',

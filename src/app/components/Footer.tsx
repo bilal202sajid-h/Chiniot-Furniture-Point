@@ -72,6 +72,7 @@ export function Footer() {
               title: 'Company',
               links: [
                 { label: 'About Us', to: '/about' },
+                { label: 'Customer Reviews', to: '/reviews' },
                 { label: 'Sustainability', to: '/sustainability' },
                 { label: 'Contact', to: '/contact' },
                 { label: 'Careers', to: '/about' },
