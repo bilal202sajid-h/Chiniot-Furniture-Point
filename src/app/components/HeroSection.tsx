@@ -10,6 +10,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
+  const heroImage = new URL('../public/img.jpeg', import.meta.url).href
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
@@ -41,7 +42,7 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
         }}
       >
         <img
-          src="/img.jpeg"
+          src={heroImage}
           alt="Luxury handcrafted furniture"
           style={{
             width: '100%',
