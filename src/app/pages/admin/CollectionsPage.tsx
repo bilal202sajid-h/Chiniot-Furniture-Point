@@ -210,21 +210,21 @@ export default function CollectionsPage() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Collections</h1>
-            <p className="text-gray-600 mt-1">Manage product collections</p>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">Collections</h1>
+            <p className="mt-1 text-sm text-gray-600 sm:text-base">Manage product collections</p>
           </div>
 
           <Dialog open={dialogOpen} onOpenChange={handleDialogOpenChange}>
             <DialogTrigger asChild>
-              <Button className="bg-amber-700 hover:bg-amber-800">
+              <Button className="w-full bg-amber-700 hover:bg-amber-800 sm:w-auto">
                 <Plus size={18} className="mr-2" />
                 Add Collection
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="max-w-2xl max-h-screen overflow-y-auto">
+            <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto sm:max-h-[85vh]">
               <DialogHeader>
                 <DialogTitle>
                   {editingId ? 'Edit Collection' : 'Add New Collection'}
@@ -248,13 +248,13 @@ export default function CollectionsPage() {
                       className="w-full h-48 object-cover rounded"
                     />
                   )}
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                     <Input
                       type="file"
                       accept="image/*"
                       onChange={handleImageUpload}
                       disabled={uploading}
-                      className="flex-1"
+                      className="min-w-0 flex-1"
                     />
                     {uploading && <span className="text-sm text-gray-500">Uploading...</span>}
                   </div>
@@ -298,7 +298,7 @@ export default function CollectionsPage() {
                 {/* Categories */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium">Categories</label>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                     {categories.map((category) => (
                       <label key={category.id} className="flex items-center gap-2">
                         <input
@@ -346,7 +346,7 @@ export default function CollectionsPage() {
         )}
 
         {/* Collections Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {collections.length === 0 ? (
             <p className="text-gray-500 col-span-full text-center py-12">No collections yet</p>
           ) : (

@@ -99,8 +99,8 @@ export default function AdminDashboard() {
     <AdminLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600 mt-1">Welcome to Chiniot Furniture Admin Panel</p>
+          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">Dashboard</h1>
+          <p className="mt-1 text-sm text-gray-600 sm:text-base">Welcome to Chiniot Furniture Admin Panel</p>
         </div>
 
         {error && (
@@ -140,7 +140,7 @@ export default function AdminDashboard() {
             <CardTitle>Quick Actions</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
               <Button
                 onClick={() => navigate('/admin/products')}
                 className="bg-amber-700 hover:bg-amber-800"

@@ -147,21 +147,21 @@ export default function CategoriesPage() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Categories</h1>
-            <p className="text-gray-600 mt-1">Manage product categories</p>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">Categories</h1>
+            <p className="mt-1 text-sm text-gray-600 sm:text-base">Manage product categories</p>
           </div>
 
           <Dialog open={dialogOpen} onOpenChange={handleDialogOpenChange}>
             <DialogTrigger asChild>
-              <Button className="bg-amber-700 hover:bg-amber-800">
+              <Button className="w-full bg-amber-700 hover:bg-amber-800 sm:w-auto">
                 <Plus size={18} className="mr-2" />
                 Add Category
               </Button>
             </DialogTrigger>
 
-            <DialogContent>
+            <DialogContent className="max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>
                   {editingId ? 'Edit Category' : 'Add New Category'}
@@ -264,55 +264,97 @@ export default function CategoriesPage() {
             {categories.length === 0 ? (
               <p className="text-gray-500 text-center py-8">No categories yet</p>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-50 border-b">
-                    <tr>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Icon
-                      </th>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Display Name
-                      </th>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Name (slug)
-                      </th>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Order
-                      </th>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {categories.map((category) => (
-                      <tr key={category.id} className="border-b hover:bg-gray-50">
-                        <td className="px-4 py-2 text-2xl">{category.icon}</td>
-                        <td className="px-4 py-2 text-sm font-medium">{category.display_name}</td>
-                        <td className="px-4 py-2 text-sm text-gray-600">{category.name}</td>
-                        <td className="px-4 py-2 text-sm">{category.sort_order}</td>
-                        <td className="px-4 py-2 text-sm flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleEdit(category)}
-                          >
-                            <Edit2 size={16} />
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleDelete(category.id!)}
-                          >
-                            <Trash2 size={16} />
-                          </Button>
-                        </td>
+              <>
+                <div className="space-y-3 md:hidden">
+                  {categories.map((category) => (
+                    <div
+                      key={category.id}
+                      className="rounded-lg border border-gray-200 bg-gray-50/50 p-4 space-y-3"
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="text-2xl">{category.icon || '—'}</span>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-gray-900">{category.display_name}</p>
+                          <p className="text-sm text-gray-600">{category.name}</p>
+                          <p className="text-xs text-gray-500 mt-1">Order: {category.sort_order}</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1"
+                          onClick={() => handleEdit(category)}
+                        >
+                          <Edit2 size={16} className="mr-1" />
+                          Edit
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1"
+                          onClick={() => handleDelete(category.id!)}
+                        >
+                          <Trash2 size={16} className="mr-1" />
+                          Delete
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="hidden overflow-x-auto md:block">
+                  <table className="w-full min-w-[560px]">
+                    <thead className="bg-gray-50 border-b">
+                      <tr>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Icon
+                        </th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Display Name
+                        </th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Name (slug)
+                        </th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Order
+                        </th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Actions
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {categories.map((category) => (
+                        <tr key={category.id} className="border-b hover:bg-gray-50">
+                          <td className="px-4 py-2 text-2xl">{category.icon}</td>
+                          <td className="px-4 py-2 text-sm font-medium">{category.display_name}</td>
+                          <td className="px-4 py-2 text-sm text-gray-600">{category.name}</td>
+                          <td className="px-4 py-2 text-sm">{category.sort_order}</td>
+                          <td className="px-4 py-2 text-sm">
+                            <div className="flex gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleEdit(category)}
+                              >
+                                <Edit2 size={16} />
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleDelete(category.id!)}
+                              >
+                                <Trash2 size={16} />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
             )}
           </CardContent>
         </Card>

@@ -223,21 +223,21 @@ export default function ProductsPage() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Products</h1>
-            <p className="text-gray-600 mt-1">Manage furniture products</p>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">Products</h1>
+            <p className="mt-1 text-sm text-gray-600 sm:text-base">Manage furniture products</p>
           </div>
 
           <Dialog open={dialogOpen} onOpenChange={handleDialogOpenChange}>
             <DialogTrigger asChild>
-              <Button className="bg-amber-700 hover:bg-amber-800">
+              <Button className="w-full bg-amber-700 hover:bg-amber-800 sm:w-auto">
                 <Plus size={18} className="mr-2" />
                 Add Product
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="max-w-2xl max-h-screen overflow-y-auto">
+            <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto sm:max-h-[85vh]">
               <DialogHeader>
                 <DialogTitle>
                   {editingId ? 'Edit Product' : 'Add New Product'}
@@ -261,13 +261,13 @@ export default function ProductsPage() {
                       className="w-full h-48 object-cover rounded"
                     />
                   )}
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                     <Input
                       type="file"
                       accept="image/*"
                       onChange={handleImageUpload}
                       disabled={uploading}
-                      className="flex-1"
+                      className="min-w-0 flex-1"
                     />
                     {uploading && <span className="text-sm text-gray-500">Uploading...</span>}
                   </div>
@@ -467,65 +467,122 @@ export default function ProductsPage() {
             {products.length === 0 ? (
               <p className="text-gray-500 text-center py-8">No products yet</p>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-50 border-b">
-                    <tr>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Name
-                      </th>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Category
-                      </th>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Price (PKR)
-                      </th>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Stock
-                      </th>
-                      <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {products.map((product) => (
-                      <tr key={product.id} className="border-b hover:bg-gray-50">
-                        <td className="px-4 py-2 text-sm">{product.name}</td>
-                        <td className="px-4 py-2 text-sm text-gray-600">{product.category}</td>
-                        <td className="px-4 py-2 text-sm font-medium">
-                          {(() => {
-                            const p = product.price
-                            // If price is numeric (string or number), format as PKR; otherwise show as-is
-                            const num = typeof p === 'number' ? p : Number(String(p).replace(/[^0-9.-]+/g, ''))
-                            if (!Number.isNaN(num) && String(p).trim() !== '') {
-                              return num.toLocaleString('en-PK', { style: 'currency', currency: 'PKR' })
-                            }
-                            return String(p)
-                          })()}
-                        </td>
-                        <td className="px-4 py-2 text-sm">{product.stock}</td>
-                        <td className="px-4 py-2 text-sm flex gap-2">
+              <>
+                <div className="space-y-3 md:hidden">
+                  {products.map((product) => {
+                    const p = product.price
+                    const num =
+                      typeof p === 'number' ? p : Number(String(p).replace(/[^0-9.-]+/g, ''))
+                    const priceDisplay =
+                      !Number.isNaN(num) && String(p).trim() !== ''
+                        ? num.toLocaleString('en-PK', { style: 'currency', currency: 'PKR' })
+                        : String(p)
+
+                    return (
+                      <div
+                        key={product.id}
+                        className="rounded-lg border border-gray-200 bg-gray-50/50 p-4 space-y-3"
+                      >
+                        <div>
+                          <p className="font-medium text-gray-900">{product.name}</p>
+                          <p className="text-sm text-gray-600">{product.category}</p>
+                        </div>
+                        <div className="flex flex-wrap gap-3 text-sm">
+                          <span className="font-medium">{priceDisplay}</span>
+                          <span className="text-gray-600">Stock: {product.stock}</span>
+                        </div>
+                        <div className="flex gap-2">
                           <Button
                             variant="outline"
                             size="sm"
+                            className="flex-1"
                             onClick={() => handleEdit(product)}
                           >
-                            <Edit2 size={16} />
+                            <Edit2 size={16} className="mr-1" />
+                            Edit
                           </Button>
                           <Button
                             variant="outline"
                             size="sm"
+                            className="flex-1"
                             onClick={() => handleDelete(product.id!)}
                           >
-                            <Trash2 size={16} />
+                            <Trash2 size={16} className="mr-1" />
+                            Delete
                           </Button>
-                        </td>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <div className="hidden overflow-x-auto md:block">
+                  <table className="w-full min-w-[640px]">
+                    <thead className="bg-gray-50 border-b">
+                      <tr>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Name
+                        </th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Category
+                        </th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Price (PKR)
+                        </th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Stock
+                        </th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                          Actions
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {products.map((product) => (
+                        <tr key={product.id} className="border-b hover:bg-gray-50">
+                          <td className="px-4 py-2 text-sm">{product.name}</td>
+                          <td className="px-4 py-2 text-sm text-gray-600">{product.category}</td>
+                          <td className="px-4 py-2 text-sm font-medium">
+                            {(() => {
+                              const p = product.price
+                              const num =
+                                typeof p === 'number'
+                                  ? p
+                                  : Number(String(p).replace(/[^0-9.-]+/g, ''))
+                              if (!Number.isNaN(num) && String(p).trim() !== '') {
+                                return num.toLocaleString('en-PK', {
+                                  style: 'currency',
+                                  currency: 'PKR',
+                                })
+                              }
+                              return String(p)
+                            })()}
+                          </td>
+                          <td className="px-4 py-2 text-sm">{product.stock}</td>
+                          <td className="px-4 py-2 text-sm">
+                            <div className="flex gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleEdit(product)}
+                              >
+                                <Edit2 size={16} />
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleDelete(product.id!)}
+                              >
+                                <Trash2 size={16} />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
             )}
           </CardContent>
         </Card>

@@ -182,8 +182,10 @@ export default function FrontendEditorPage() {
     <AdminLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Frontend Editor</h1>
-          <p className="text-gray-600 mt-1">Manage frontend content and configuration</p>
+          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">Frontend Editor</h1>
+          <p className="mt-1 text-sm text-gray-600 sm:text-base">
+            Manage frontend content and configuration
+          </p>
         </div>
 
         {error && (
@@ -199,11 +201,19 @@ export default function FrontendEditorPage() {
         )}
 
         <Tabs defaultValue="navbar" className="w-full">
-          <TabsList className="bg-gray-100">
-            <TabsTrigger value="navbar">Navbar</TabsTrigger>
-            <TabsTrigger value="hero">Hero Section</TabsTrigger>
-            <TabsTrigger value="footer">Footer</TabsTrigger>
-            <TabsTrigger value="social">Social Links</TabsTrigger>
+          <TabsList className="h-auto w-full flex-wrap justify-start gap-1 bg-gray-100 p-1">
+            <TabsTrigger value="navbar" className="flex-1 min-w-[7rem] sm:flex-none">
+              Navbar
+            </TabsTrigger>
+            <TabsTrigger value="hero" className="flex-1 min-w-[7rem] sm:flex-none">
+              Hero
+            </TabsTrigger>
+            <TabsTrigger value="footer" className="flex-1 min-w-[7rem] sm:flex-none">
+              Footer
+            </TabsTrigger>
+            <TabsTrigger value="social" className="flex-1 min-w-[7rem] sm:flex-none">
+              Social
+            </TabsTrigger>
           </TabsList>
 
           {/* Navbar Tab */}
@@ -215,7 +225,10 @@ export default function FrontendEditorPage() {
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   {navItems.map((item, index) => (
-                    <div key={index} className="flex gap-2 items-end">
+                    <div
+                      key={index}
+                      className="flex flex-col gap-3 rounded-lg border border-gray-200 p-4 sm:flex-row sm:items-end sm:border-0 sm:p-0"
+                    >
                       <div className="flex-1 space-y-1">
                         <label className="text-sm font-medium">Label</label>
                         <Input
@@ -237,7 +250,7 @@ export default function FrontendEditorPage() {
                       <Button
                         variant="outline"
                         onClick={() => removeNavItem(index)}
-                        className="px-3"
+                        className="w-full shrink-0 sm:w-auto sm:px-3"
                       >
                         Remove
                       </Button>
@@ -281,13 +294,13 @@ export default function FrontendEditorPage() {
                       className="w-full h-48 object-cover rounded"
                     />
                   )}
-                  <div className="flex gap-2">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                     <Input
                       type="file"
                       accept="image/*"
                       onChange={handleHeroImageUpload}
                       disabled={heroImageUploading}
-                      className="flex-1"
+                      className="min-w-0 flex-1"
                     />
                     {heroImageUploading && (
                       <span className="text-sm text-gray-500 flex items-center">
@@ -319,7 +332,7 @@ export default function FrontendEditorPage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <label className="text-sm font-medium">CTA Button Text</label>
                     <Input
