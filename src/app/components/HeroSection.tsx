@@ -24,44 +24,28 @@ export function HeroSection({ onExploreClick, onViewIn3DClick }: HeroSectionProp
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden"
+      className="hero-section relative overflow-hidden"
       style={{
-        height: '100vh',
         marginTop: 'calc(-1 * var(--header-height, 4rem))',
       }}
     >
-      {/* Background image — zoomed out to show full furniture perspective */}
+      {/* Background image — crop/focal point adapts via .hero-image (globals.css) */}
       <motion.div
-        className="absolute inset-0"
-        style={{
-          scale: imageScale,
-          /* Pull the image container outward so object-fit: cover shows more of the photo */
-          inset: '-2%',
-          width: '116%',
-          height: '116%',
-        }}
+        className="hero-image-wrap"
+        style={{ scale: imageScale }}
       >
         <img
           src={heroImage}
           alt="Luxury handcrafted furniture"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center 35%',
-            display: 'block',
-          }}
+          className="hero-image"
+          decoding="async"
+          fetchPriority="high"
         />
       </motion.div>
 
-      {/* Left-side scrim — darkens text area, reveals furniture on right */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(to right, rgba(26,23,20,0.78) 0%, rgba(26,23,20,0.55) 35%, rgba(26,23,20,0.15) 65%, transparent 100%)',
-        }}
-      />
+      {/* Scrim — horizontal on desktop, vertical on mobile for readable text */}
+      <div className="hero-scrim-desktop absolute inset-0 pointer-events-none" />
+      <div className="hero-scrim-mobile absolute inset-0 pointer-events-none" />
 
       {/* Subtle top-to-bottom vignette for depth */}
       <motion.div
